@@ -1,5 +1,5 @@
 // 1. Import your custom functions from the template file
-#import "template.typ": research-notes, hl, theory-box, math-box
+#import "template.typ": research-notes, hl, theory-box, math-box, ket, bra, difp
 
 // 2. Apply the template
 #show: research-notes.with(
@@ -9,17 +9,12 @@
   // supervisor: "Prof. Ranjan Laha"
 )
 
-// // 3. Start writing!
-// = Introduction to Quantum Field Theory
-// This document serves as the primary reference notes. Here is a highlighted concept: #hl[this text is highlighted clearly].
 
-// #theory-box(title: "The IceCube Detector Mechanism")[
-//   This box is now pulling its styling entirely from the external file!
-// ]
 
 = Cosmological Background 
 
 == The isotropic, homogeneous universes and their metrics
+
 
 When averaged over a large distance ($~ 100$ Mpc), the universe is: 
   - *isotropic*: is the same in all directions 
@@ -682,7 +677,7 @@ both of which are illustrated in @proper-distance-model-universe.png.
 
 
 
-==== Radiation only universe
+==== Radiation only universe<radiation-only-universe>
 
 #theory-box[This case is of special interest to us since our own universe was very much dominated by radiation in its early stages. Thus, at early times – long before the time of radiation–matter equality – the universe was well described by a spatially flat, radiation-only model!]
 
@@ -758,6 +753,257 @@ $ t_0 = 0.995 H_0^(-1) = 13.74 "Gyr" $
 
 
 #figure(image("images/scale-factor-vs-time-benchmark-model.png", width: 70%), caption: [Scale factor v/s time for the benchmark model, with the two equality points indicated])<scale-factor-vs-time-benchmark-model.png>
+
+#pagebreak()
+== Big Bang Nucleosynthesis
+
+The big bang introduced the universe to a very hot and dense state, filled with a bunch of different particles. #hl[All these particles were in thermal equilibrium with each other, which means that they were constantly interacting with each other and exchanging energy]. As the universe expanded and cooled, the soup of particles cooled down and interactions between the particles slowed down. 
+
+#hl[Roughly $~1$ second after the big bang, the particle soup only composed of photons, neutrinos, anti-neutrinos, electrons, positrons, protons and neutrons]. The interactions of these particles and their dynamical evolution governed by the expansion of the universe, led to the formation of light nuclei, which is what we call big bang nucleosynthesis. 
+
+#theory-box(title: "Coupling")[
+  Two particles are said to be coupled to each other if they are interacting with each other at a rate that is faster than the expansion of the universe. This means that the interaction rate, $Gamma$, is greater than the Hubble parameter, $H$. 
+
+  $ Gamma > H $
+
+  In this scenario, the particles are constantly interacting with each other and exchanging energy, which brings them to a thermal equilibrium where all the particles roughly have the same temperature/energy. 
+
+  If the interaction rate is slower than the expansion of the universe, then the particles are said to be decoupled from each other. This means that the particles are no longer interacting with each other and are free to evolve independently. 
+
+  $ Gamma < H $
+
+  This means that the particles are no longer in thermal equilibrium with each other and can have different temperatures/energies. It also means that the particle's dynamics are governed more by the expansion of the universe than by their interactions with each other, in a way making them "independent" of each other. 
+
+  The time at which two particles decouple from each other is called the decoupling time, $t_"dec"$. This is the time at which the interaction rate becomes equal to the Hubble parameter. 
+
+  $ Gamma(t_"dec") = H(t_"dec") $
+
+  #hl[And this process of decoupling is also called "freeze-out", because the particles are "frozen" in their state at the time of decoupling and are no longer able to interact with each other.]
+]
+\
+=== Neutrons and Protons 
+
+At about $t = 0.1$ seconds after the big bang, all the particles were still very much coupled to each other. This allows neutrons and protons to freely interconvert into each other through the weak interactions: 
+
+$ n + nu_e <-> p + e^- 
+\ n + e^+ <-> p + dash(nu)_e
+\ n <-> p + e^- + dash(nu)_e $
+
+At thermal and kinetic equilibrium, the ratio of the number densities of protons ($n_p$) and neutrons ($n_n$) is given by: 
+
+$ n_n/n_p = (m_n/m_p)^(3/2) exp(-((m_n - m_p)c^2)/(k_B T)) $
+
+where $m_n$ and $m_p$ are the masses of the neutron and proton respectively, $k_B$ is the Boltzmann constant and $T$ is the temperature of the universe. (The derivation can be found here @rydenIntroductionCosmology2017) 
+
+We approximate the mass ratio as $m_n slash m_p approx 1$, and we define: $(m_n - m_p) c^2 = Q = 1.29$ MeV, giving us: 
+
+$ n_n/n_p = exp(-Q/(k_B T)) = exp(-(1.29 "MeV")/(k_B T)) $
+
+What this equation shows is that at high temperatures (which was the case in the early universe), the ratio of neutrons to protons is roughly 1, meaning that there are roughly equal numbers of neutrons and protons. But as the universe cools down, the ratio of neutrons to protons decreases, meaning that there are fewer neutrons than protons. 
+
+#hl[The equation also suggests that as the temperature keeps lowering, the number of neutrons will keep decreasing (given that the thermal equilibrium is maintained), and eventually there will be no neutrons left]. But this is clearly not the case! 
+
+The reason as to what's missing is hidden behind the need for the neutrons and protons to be in thermal equilibrium with each other. 
+
+They key factor holding up the thermal equilibrium is the weak interaction involving the neutrinos and the nucleons. And as we all know, neutrinos are very weakly interacting particles, which means the interaction rate for the entire interaction depends on the interaction rate of the neutrinos. Thus, the interaction rate for the weak interaction is given by: 
+
+$ Gamma = n_nu sigma v $
+
+where $n_nu$ is the number density of neutrinos, $sigma$ is the cross-section of the interaction and $v$ is the relative velocity of the particles. 
+
+We saw before that in a radiation dominated universe (which it is, again which was discussed in @radiation-only-universe) the relation between the Temperature of the universe and the scale factor/time is given by: 
+
+$ T prop a(t)^(-1) prop t^(-1 slash 2) $
+
+and we also know that the number density and the cross sections have the relationships @rydenIntroductionCosmology2017: 
+
+$ n_nu prop T^3 prop t^(-3 slash 2) "    " sigma prop T^2 prop t^(-1) $
+
+Putting all of it together, we get the interaction rate to be: 
+
+$ Gamma prop t^(-5 slash 2) $
+
+(here we have ignored the relative velocity, $v$, since it is roughly constant and of the order of $c$).
+
+Additionally, the expansion of the universe is governed by the Hubble parameter, which in a radiation dominated universe is given by: 
+
+$ H prop t^(-1) $
+
+Which means that the interaction rate decreases faster than the expansion of the universe, and at some point in time, the interaction rate will become equal to the expansion rate of the universe, and the neutrons and protons will decouple from each other. This is the time when the weak interaction freezes out, and the ratio of neutrons to protons is frozen in at that time. 
+
+The freeze-out temperature, $T_"freeze"$, is experimentally determined to be: 
+
+$ T_"freeze" = 9 times 10^9 "K" "   " => "   "  k_B T_"freeze" = 0.8 "MeV" $
+
+Substituting this back into the equation for the ratio of neutrons to protons, we get: 
+
+#math-box[$ n_n/n_p = exp(-(1.29 "MeV")/(0.8 "MeV")) = 0.20 = 1/5 $]
+
+which tells us that after the decoupling or the freeze-out of the weak interaction, there are 5 protons for every neutron in the universe. 
+
+\
+=== Deuterons 
+
+But the stody doesn't end there for the neutrons and protons. Now that neutrons and protons can exist independently without constant interconversion, other reactions can take place. Particularly, the formation of a dueteron, which is a bound state of a proton and a neutron, is of interest to us. The reaction is given by:
+
+$ p + n <-> d + gamma $
+
+where $d$ is the deuteron and $gamma$ is a photon.
+
+This reaction is favoured in the early universe since the other possibilities i.e. a proton-proton or a neutron-neutron bound state are not stable. But the formation of deuterons is not as simple as it seems. 
+
+The deuteron has a binding energy of $B = 2.22$ MeV, which means that a photon with an energy greater than $B$ can break the deuteron back into a proton and a neutron, so effectively there is no net formation of deuterons. And this was the case since the universe was really hot, and the photons had energies greater than $B$. 
+
+So as soon as the universe cooled down to below the binding energy of the deuteron, the formation of deuterons should be favoured, which would have happened even before the freeze-out of the weak interaction! It seems to contradict the events that we have discussed so far, but the reason for this is hidden in the number of photons in the universe. 
+
+The number of photons outnumber the number of baryons in the universe by a factor of approximately $10^9$, which is a loooot of photons. Now as the universe cooled below $2.22$ MeV, the "average" photon energy was less than $2.22$ MeV, but there were still a lot of photons with energies greater than $2.22$ MeV, which could break the deuterons back into protons and neutrons. So eventhough it seems like the formation of deuterons should be favoured, it was not, just because there were too many photons with energies greater than the binding energy of the deuteron. #hl[This is called the "deuterium bottleneck"]. 
+
+Thus the formation of deuterons was not favoured until the universe cooled down to below $0.07$ MeV. 
+
+// #theory-box[
+//   The temperature $0.07$ MeV is the temperature at which nuclei (neutrons and protons bound together) starts to become more favourable over free nucleons (neutrons and protons separately). 
+
+//   This temperature is calculated using a general formula which gives us the temperature at which a nucleus with $A$ nucleons and a binding energy of $B_A$ becomes more favourable than free nucleons, which is given by: 
+
+//   $ T_"nuclei" = (B_A slash (A-1))/(ln(eta^(-1)) + 1.5 ln(m_N slash T)) $<Temperature-nuclei>
+
+//   where $eta$ is the baryon-to-photon ratio, $m_N$ is the mass of a nucleon and $T$ is the temperature of the universe. 
+
+//   When we perform this calculation for the deuteron, we get the value of $T_"nuclei" = 0.07$ MeV, which is the temperature at which the formation of deuterons is favoured over free nucleons.
+
+// ]
+\
+#theory-box[
+
+So recapping the events, we have:
+
+- At $t = 0.1$ seconds, the universe was hot enough for neutrons and protons to interconvert into each other through the weak interaction, and the ratio of neutrons to protons was roughly 1.
+
+- At $t = 1$ second, the temperature reduces to $k_B T = 0.8$ MeV,  the weak interaction froze out, and the ratio of neutrons to protons was frozen in at $n_n slash n_p = 0.20$.
+
+- At $t = 3$ minutes, the universe cooled down to below the binding energy of the deuteron, but the formation of deuterons was not favoured due to the deuterium bottleneck.
+
+- At $t = 5$ minutes, the universe cooled down to below $0.06$ MeV, and the formation of deuterons was finally favoured.
+
+]
+
+Notice from above that there is a time period between the freeze-out of the weak interaction (which happened at $t = 1$ second) and the formation of deuterons (which happened at $t = 5$ minutes). In this time perdiod, the neutrons exist independently as free particles and are not bound to any protons. And since the neutrons are unstable particles, they decay into protons with a half-life of $t_"1/2" = 10.2$ minutes. With this information, we can calculate how much neutrons would have decayed in this time period, and thus how many neutrons would be left to form deuterons. 
+
+The fraction of neutrons that remain after a time $t$ is given by @cookeBigBangNucleosynthesis2024: 
+
+$ n_n (t) ~ exp(-t slash tau) $
+
+where $tau$ is the mean lifetime of the neutron, $tau approx 800 "seconds"$. And so, the fraction of the remaining neutrons would be: 
+
+$ n_n (t) ~ exp(- 300 slash 800) approx 0.7 $
+
+#hl[Which implies that at the beginning of the formation of deuterons, there are only 70% of the neutrons left that were present at the freeze-out of the weak interaction. This means that the ratio of neutrons to protons at the beginning of the formation of deuterons goes down to]: 
+
+$ n_n/n_p = 0.7 dot 0.2 = 0.14 => n_n/n_p approx 1/7 $
+
+Now we are finally ready to form deuterons, so overtime beyond $t = 5$ minutes, the neutrons and protons will combine to form deuterons. 
+
+And all the neutrons will eventually be bound to protons in the form of deuterons or would decay into protons. But the formation of deuterons is not the end of the story, since deuterons can further combine to form helium-3, helium-4 and lithium-7. However this is as far as free neutrons will go in our story. 
+
+\
+=== Helium-4 
+
+So, now that our final neutron-to-proton ratio is found to be $n_n slash n_p = 1 slash 7$ and deuteron production has started, we can start to worry about the other nuclear reactions that can take place. 
+
+The most important of this reaction is the formation of helium-4, which is a bound state of 2 protons and 2 neutrons (also known as an alpha particle). There are various reactions that can lead to the formation of helium-4, as discussed in @cookeBigBangNucleosynthesis2024, but we are not going to be discussing those here. 
+
+The important point to discuss here is that the formation of helium-4 opens up more channels for more nucleosynthesis reactions to take place, further forming $"Li"^7$ and $"Be"^7$. But the formation of helium-4 is so favoured because of its high binding energy. 
+
+
+Now all the neutrons are bound to protons in the form of helium-4, and so the number density of helium-4 is given by:
+
+$ n_"He" = n_n/2 = 1/14 n_p $
+
+(since there are 2 neutrons in each helium-4 nucleus)
+
+And the number density of hydrogen nucleids (which are just formed by the left over protons) is given by: 
+
+$ n_H = n_p - 2 n_"He" = n_p - n_n = 6/7 n_p $
+
+And so, we define primoridal number density of $"He"^4$ to $H^1$ to be: 
+
+$ y_p = n_"He"/n_H = (1 slash 14)/(6 slash 7) = 1/12 = 0.0833 $
+
+
+The mass fraction of helium-4 is given by: 
+
+#math-box[$ Y_P = (4 n_"He")/(4 n_"He" + n_H) = (4 y_p)/(4 y_p + 1) $]
+
+For $y_p = 0.08$, the mass fraction of helium-4 comes out to be: $Y_P = 0.24$
+
+
+
+\
+=== Factors affecting the early universe nucleosynthesis 
+
+A multitude of factors affect the nucleosynthesis in the early universe, but out of all of them, the most important one is the *temperature*. In this section, we will see how the temperature affects the nucleosynthesis and discuss the factors that it depends upon. 
+
+As we saw before, the temperature needed for the formation of deuterons is $T_"nuclei" = 0.07$ MeV. The universe must cool below this temperature for the formation of deuterons to be favoured, i.e. $T < T_"nuclei"$
+
+But how is this temperature calculated? It is calculated using a general formula which gives us the temperature at which a nucleus with $A$ nucleons and a binding energy of $B_A$ becomes more favourable than free nucleons, which is given by @turnerUnderstandingBBNPhysics2021: 
+
+$ T_"nuclei" = (B_A slash (A-1))/(ln(eta^(-1)) + 1.5 ln(m_N slash T)) $<Temperature-nuclei>
+
+where $eta$ is the baryon-to-photon ratio, $m_N$ is the mass of a nucleon and $T$ is the temperature of the universe. When we perform this calculation for the deuteron using our universe's baryon-to-photon ratio ($eta = 6.03 times 10^(-10)$), we get: 
+
+$ T_"nuclei" = 0.07 "MeV" $
+
+Which is the temperature at which the formation of deuterons is favoured over free nucleons.
+
+
+\
+But the story doesn't end there since now the deuterons must come together to form helium-4. This process is more complicated since deuterons are all charged particles. Any nucleosynthesis beyond deuterons (including the formation of helium-4) must involve charged particle on charged particle interactions. But these interactions are suppressed by the Coulomb barrier, which is the energy barrier due to the electrostatic repulsion between the positively charged nuclei. 
+
+The particles must have enough kinetic energy to overcome the Coulomb barrier. This minimum threshold energy is represented by the temperature $T_"Coulomb"$ and for the formation of helium-4, it comes out to be: 
+
+$ T_"Coulomb" = (0.03 "MeV")/(1 + ln (eta_(10)) slash 7)  $
+
+where $eta_(10) = eta times 10^(10)$ 
+
+For our universe's baryon-to-photon ratio, this temperature comes out to be: 
+$ T_"Coulomb" = 0.023 "MeV" $
+
+Which implies that the universe must stay above this temperature for the formation of helium-4 (and other heavier nuclei) to be favoured. 
+
+Thus, for the formation of helium-4 to be favoured, the temperature of the universe must satisfy the following condition:
+
+$ T_"Coulomb" < T < T_"nuclei" \ \ \ => 0.023 "MeV" < T < 0.07 "MeV" $
+
+
+
+
+
+#theory-box(title: "Baryon-to-Photon ratio")[
+
+The baryon-to-photon ratio, $eta$, is a dimensionless quantity that represents the ratio of the number density of baryons (protons and neutrons) to the number density of photons in the universe. 
+
+The baryon-to-photon ratio is an important parameter in cosmology since it affects the nucleosynthesis in the early universe. A higher baryon-to-photon ratio means that there are more baryons in the universe, which leads to a higher rate of nucleosynthesis and a higher abundance of helium-4 and vice-versa. 
+
+#hl[The ratio is in fact constant in time, since the number of baryons and photons are both conserved in the universe.] And for our universe, this value is given by: 
+
+$ eta = n_b/n_gamma = 6.03 times 10^(-10) $ 
+
+Which implies that for every single neutron or proton in the universe, there are nearly a billion photons. This is a very large number, and it is the reason why the formation of deuterons was not favoured until the universe cooled down to below $0.07$ MeV, even though the binding energy of the deuteron is $2.22$ MeV. 
+
+The reason why this ratio is constant in time is because the number density of both baryons and photons scale with the scale factor of the universe in the same way, i.e. $n_b prop a(t)^(-3)$ and $n_gamma prop a(t)^(-3)$. Thus, their ratio is constant in time, and the value of this ratio is determined by the conditions in the early universe.
+
+]
+
+
+
+
+
+
+
+
+
+
+
 
 #pagebreak()
 
@@ -913,6 +1159,444 @@ A 4-vector is said to be #hl[time-like] if $V^mu V_mu > 0$, #hl[space-like] if $
 
 
 
+== Second Quantization
+
+The simplest example of a quantum field is the free scalar field, which is described by the *Klein-Gordon equation*: 
+
+$ (square + m^2) phi.alt = 0 $<klein-gordon>
+
+where $phi$ is the scalar field and $m$ is the mass of the scalar field.
+
+Now say the mass of this scalar field is zero, then the Klein-Gordon equation reduces to the *wave equation*: 
+
+$ square phi.alt = (partial_t^2 - arrow(nabla)^2 ) phi.alt =  0 $<wave-equation>
+
+We can substitute a plane wave solution such that only the amplitude of the wave is a function of time, and the spatial part is a plane wave: 
+
+$ phi.alt_p = a_p (t) e^(i arrow(p) dot  arrow(x)) $
+
+Substituing this back into the wave equation, we see that the spatial part cancels out and we are left with: 
+
+$ (partial_t^2 + arrow(p)^2 ) a_p (t) = 0 $
+
+Upon expanding this equation, we see: $ dot.double(a)_p (t) = - omega_p^2 a_p (t) $ 
+
+where $omega_p = |arrow(p)|$. This above equation is nothing but the equation of motion for a simple harmonic oscillator, which has the solution: 
+
+$ a_p (t) = a_p e^(plus.minus i omega_p t) $ 
+
+So the final form for $phi.alt_p$ is: 
+
+$ phi.alt_p = a_p e^(plus.minus i omega_p t) e^(i arrow(p) dot  arrow(x)) = a_p e^(plus.minus i p dot x) $
+
+where $p = (omega_p, arrow(p))$ and $x = (t, arrow(x))$ are the 4-momentum and 4-position vectors respectively.
+
+So a general solution for the massless Klein-Gordon equation (wave equation), can be written as a linear combination of the plane wave solutions: 
+
+$ phi.alt = sum_p phi.alt_p $
+
+which when converted into an integral over the momentum space, we get: 
+
+$ phi.alt = integral (dif^3 p)/(2 pi)^3 [a_p e^(i p dot x) + a_p^* e^(- i p dot x)] $
+
+where $a_p$ and $a_p^*$ are the coefficients of the plane wave solutions.
+
+
+#theory-box[Not only is $square phi.alt = 0$ the simplest Lorentz invariant field equation, but it is one of the equations that free-massless fields will always satisfy. 
+
+To see this, we study the Electromagnetic field next
+
+The Maxwell's equations describing the electromagnetic field, in empty space, can be written as: 
+
+$ partial_mu F^(mu nu) = 0 "    " partial_mu F^(nu rho) + partial_nu F^(rho mu) + partial_rho F^(mu nu) = 0 $
+
+where $F^(mu nu)$ is the electromagnetic field tensor, which is defined as: 
+
+$ F_(mu nu) = mat(0, E_x, E_y, E_z; -E_x, 0, -B_z, B_y; -E_y, B_z, 0, -B_x; -E_z, -B_y, B_x, 0) $
+
+which can also be written in terms of the 4-potential $A^mu = (phi, A_x, A_y, A_z)$ as: 
+
+$ F_(mu nu) = partial_mu A_nu - partial_nu A_mu $
+
+Further, we can choose the Lorentz gauge condition, which fixes the gauge freedom of the electromagnetic field, as $ partial_mu A^mu = 0$. Then in the Lorentz gauge, the Maxwell's equations reduce to: 
+
+$ partial_mu F^(mu nu) = square A^nu - partial_nu (partial_mu A^mu) = square A^mu = 0  $
+
+#hl[Thus we see that each component of the 4-potential satisfies the massless Klein-Gordon equation]
+
+So similar to $phi.alt$ , we can write the general solution for $A^mu$ as: 
+
+$ A^mu = integral (dif^3 p)/(2 pi)^3 [a_p^mu e^(i p dot x) + a_p^(mu^ *) e^(- i p dot x)] $
+
+]
+
+Now since the field is governed by the wave equation, which is essentially the equation of motion for a simple harmonic oscillator, we can quantize the field in the same way we quantize a simple harmonic oscillator. 
+
+We do this by promoting the coefficients $a_p$ and $a_p^*$ to operators, which we call the annihilation and creation operators, for each wave number $arrow(p)$, respectively. 
+
+We can then write the field and the hamiltonian of the field as: 
+
+$ phi.alt_0 (arrow(x)) = integral (dif^3 p)/(2 pi)^3 1/sqrt(2 omega_p) [a_p e^(i arrow(p) dot  arrow(x)) + a_p^dagger e^(- i arrow(p) dot  arrow(x))] $
+
+$ H_0 = integral (dif^3 p)/(2 pi)^3 omega_p (a_p^dagger a_p + 1/2)  $
+
+where the subscript 0 indicates that this is a free field, i.e. there are no interactions with other fields. 
+
+
+This was the *second quantization* of the scalar field, and this brings with it two important consequences: 
+
++ We have many quantum mechanical harmonic oscillators, one for each $arrow(p)$, all at the same time. 
+
++ We interpret the $n$th excitation of the $arrow(p)$ harmonic oscillator as having $n$ particles.
+
+Along with this, we get the commutation relations for the creation and annihilation operators as: 
+
+$ [a_p, a_q^dagger] = (2 pi)^3 delta^3(arrow(p) - arrow(q)) $
+
+The $a_p^dagger$ creates particles with momentum $arrow(p)$ and $a_p$ annihilates particles with momentum $arrow(p)$. 
+
+$ a_p^dagger |0 ket = 1/sqrt(2 omega_p) |1 arrow(p) ket $
+
+where $|1 arrow(p) ket$ represents a single particle state with momentum $arrow(p)$ and $|0 ket$ is the vacuum state. 
+
+We can perform the following normalization of the single particle state, by setting:
+
+$ bra 0 | 0 ket = 1 $ 
+
+which leads to: 
+
+$ bra arrow(p) | arrow(q) ket = 2 omega_p (2 pi)^3 delta^3(arrow(p) - arrow(q)) $
+
+Upon acting $phi.alt_0$ on the vacuum state, and project out the momentum component, we get: 
+
+$ bra arrow(p) | phi.alt_0 (arrow(x)) | 0 ket = e^(- i arrow(p) dot  arrow(x)) $
+
+#theory-box[This is the same as the projection of the position state one a momentum state in one-particle quantum mechanics: 
+
+$ bra arrow(p) | arrow(x) ket = e^(- i arrow(p) dot  arrow(x)) $ 
+
+]
+
+#hl[This essentially shows us that, $phi.alt_0 (arrow(x))$ when acted on the vacuum state, creates a particle at position $arrow(x)$, which is a superposition of all the momentum states.] 
+
+The discussion up til now was at a fixed time slice. #hl[In QFT we often work with the Heisenberg picture, where the operators evolve with time and the states are fixed.] The creation and annihilation operators evolve with time as: 
+
+$ a_p (t) = a_p e^(-i omega_p t) "     " a_p^dagger (t) = a_p^dagger e^(i omega_p t) $
+
+Then the field operator at any time is given by:
+
+$ phi.alt_0(arrow(x), t) = phi.alt_0(x) = integral difp(p) 1/sqrt(2 omega_p) [a_p e^(-i p dot x) + a_p^dagger e^(i p dot x) ] $
+
+with $p^mu = (omega_p, arrow(p))$ 
+
+
+In fact, the general solution to general Klein-Gordon equation is given in a similar form: 
+
+#math-box[
+
+  $ (square + m^2) phi.alt_0 = 0 $ 
+
+  $ phi.alt_0 (arrow(x), t) = integral difp(p) 1/sqrt(2 omega_p) [a_p e^(-i p dot x) + a_p^dagger e^(i p dot x)] $
+
+  $ "where" omega_p = sqrt(arrow(p)^2 + m^2) $
+
+]
+
+We actually find the equivalent of the Heisenberg equation for the field, which is given by:
+
+$ i partial_t phi.alt_0 (arrow(x), t) = [phi.alt_0 (arrow(x), t), H_0] $
+
+and the Schrödinger equation for the states, which is given by: 
+
+$ partial_t^2 phi.alt_0 = (arrow(nabla)^2 - m^2) phi.alt_0 $
+
+
+We can find equal-time commutation relations for the fields at different points in space, which are given by: 
+
+$ [phi.alt_0(arrow(x), t), phi.alt_0(arrow(y), t)] = 0 $
+
+We can define the conjugate momentum of the field as: 
+
+$ pi_0 (arrow(x), t) = partial_t phi.alt_0 (arrow(x), t) $
+
+#math-box[
+
+  $ pi_0 (arrow(x), t) = - i integral difp(p) sqrt(omega_p/2) [a_p e^(-i p dot x) - a_p^dagger e^(i p dot x)] $
+
+]
+
+Then we get the following equal-time commutation relations: 
+
+$ [phi.alt_0(arrow(x), t), pi_0(arrow(y), t)] = i delta^3(arrow(x) - arrow(y)) $
+
+$ [pi_0(arrow(x), t), pi_0(arrow(y), t)] = 0 $
+
+
+All the commutation relations can be summarized below: 
+
+#math-box[ 
+
+  $ [a_p, a_q^dagger] = (2 pi)^3 delta^3(arrow(p) - arrow(q)) $
+
+  $ [phi.alt_0(arrow(x), t), phi.alt_0(arrow(y), t)] = 0 $
+
+  $ [pi_0(arrow(x), t), pi_0(arrow(y), t)] = 0 $
+
+  $ [phi.alt_0(arrow(x), t), pi_0(arrow(y), t)] = i delta^3(arrow(x) - arrow(y)) $
+
+]
+
+
+
+
+== Classical Field Theory
+
+This chapter lays the foundation for how we actually *do* QFT in practice. The central philosophy is this: instead of specifying equations of motion directly, we encode all the physics into a single object - the *Lagrangian* - and then derive everything from it. This approach has two enormous advantages: it is manifestly Lorentz covariant, and symmetries of the Lagrangian translate directly into conserved quantities.
+
+=== Hamiltonians and Lagrangians
+
+In classical mechanics, you either describe a system through a *Hamiltonian* $H$ or a *Lagrangian* $L$. They are related by a *Legendre transform*:
+
+#math-box[$ H = pi dot(phi) - L "       where       " pi = (partial L)/(partial dot(phi)) $]
+
+For the simplest (and most important) case of a scalar field:
+
+$ L = 1/2 (partial_mu phi)(partial^mu phi) - V[phi] = 1/2 dot(phi)^2 - 1/2 (arrow(nabla) phi)^2 - V[phi] $
+
+$ H = 1/2 dot(phi)^2 + 1/2 (arrow(nabla) phi)^2 + V[phi] $
+
+So the Hamiltonian is the sum of kinetic and potential energy ($H = K + V$), while the Lagrangian is their difference ($L = K - V$).
+
+#theory-box(title: "Why We Prefer Lagrangians in QFT")[
+  The Hamiltonian picks out a preferred time direction (it is the energy, the $0$-component of the 4-momentum $P^mu = (H, arrow(P))$), so it is *not* manifestly Lorentz invariant. 
+
+  The Lagrangian density $cal(L)(x)$, on the other hand, is a Lorentz scalar — if you boost or rotate, it transforms the same as any other scalar field. This makes it the natural language for relativistic field theory.
+
+  That is why in QFT, the Hamiltonian is mostly used for conceptual understanding (energy, particle number, etc.), while *all actual calculations* use Lagrangians.
+]
+
+==== Kinetic terms vs. Interactions
+
+It is standard in QFT to distinguish the two structural parts of a Lagrangian:
+
+- *Kinetic terms*: bilinear in the fields (which means exactly two fields), they govern free propagation. Examples: $ 1/2 phi square phi "      " -1/4 F_(mu nu)^2 "      " 1/2 m^2 phi^2 $
+  
+- *Interaction terms*: three or more fields, they encode how particles interact. Examples: $ lambda phi^3 "     " g^2 A_mu^2 A_nu^2 "     " ... $
+
+#hl[The kinetic terms tell you everything about the free-field behavior — how particles propagate in empty space. Interactions are perturbations on top of that free theory.]
+
+=== The Euler-Lagrange Equations
+
+The equations of motion follow from the *principle of least action*. The action is:
+
+$ S = integral d^4 x space cal(L)[phi, partial_mu phi] $
+
+Varying the field $phi -> phi + delta phi$ and demanding $delta S = 0$ for any variation that vanishes at the boundary gives the *Euler-Lagrange equations*:
+
+#math-box[$ (partial cal(L))/(partial phi) - partial_mu (partial cal(L))/(partial (partial_mu phi)) = 0 $<euler-lagrange>]
+
+This is the covariant equation of motion for any field. Let us verify on the scalar Lagrangian:
+
+$ cal(L) = 1/2 (partial_mu phi)(partial^mu phi) - 1/2 m^2 phi^2 $
+
+Plugging into @euler-lagrange gives:
+
+$ -m^2 phi - partial_mu (partial^mu phi) = 0 \ \ ==> (square + m^2) phi = 0 $
+
+which is exactly the *Klein-Gordon equation* from Chapter 2 — confirming that our Lagrangian approach is consistent.
+
+#theory-box(title: "Why Only First Derivatives?")[
+  We restrict to Lagrangians of the form $cal(L)[phi, partial_mu phi]$ (no $partial_mu partial_nu phi$ etc.) for the following reasons:
+
+  - In classical mechanics, specifying initial position and velocity (first derivative) fully determines the future evolution — this matches Newton's laws. Higher-order kinetic terms would require specifying higher-order initial data.
+
+  - In the quantum theory, Lagrangians with kinetic terms involving more than two derivatives generically lead to catastrophic consequences: states with negative energy ("ghosts") or negative norm. This would allow the vacuum to spontaneously decay, which is unphysical.
+  
+  Interactions *can* have multiple derivatives (and must in effective field theories), but the kinetic terms should always be at most second order in derivatives.
+]
+
+=== Noether's Theorem
+
+This is arguably one of the most beautiful and practically useful results in all of theoretical physics.
+
+#theory-box(title: "Noether's Theorem")[
+  *If a Lagrangian has a continuous symmetry, then there exists a conserved current associated with that symmetry — one that is conserved when the equations of motion are satisfied (i.e., on-shell).*
+
+  Mathematically: if $cal(L)$ is invariant under $phi -> phi + alpha delta phi$ for continuous parameter $alpha$, then the current:
+
+  $ J^mu = sum_n (partial cal(L))/(partial (partial_mu phi_n)) (delta phi_n)/(delta alpha) $
+
+  satisfies: $ partial_mu J^mu = 0 $
+
+  This implies the *conserved charge*: $ Q = integral d^3 x space J^0 $ satisfies $partial_t Q = 0$.
+]
+
+The physical implication is profound: #hl[every continuous symmetry of nature corresponds to a conservation law. Time translation symmetry gives energy conservation. Space translation gives momentum conservation. Rotational symmetry gives angular momentum conservation. This is not a coincidence — it is a mathematical theorem.]
+
+A few important caveats:
+- The symmetry must be *continuous* (e.g., $phi -> e^(-i alpha) phi$). Discrete symmetries like $phi -> -phi$ do not apply.
+- The current is only conserved *on-shell*, i.e., when the field satisfies its equations of motion.
+- It applies to *global* symmetries (constant $alpha$), not just local gauge symmetries.
+
+==== Example: $U(1)$ symmetry and charge conservation
+
+Consider a complex scalar field $phi$ with Lagrangian:
+
+$ cal(L) = (partial_mu phi)(partial^mu phi^*) - m^2 phi phi^* $
+
+This is invariant under $phi -> e^(-i alpha) phi$ for any constant $alpha in RR$. Taking the infinitesimal variation:
+
+$ (delta phi)/(delta alpha) = -i phi "        " (delta phi^*)/(delta alpha) = +i phi^* $
+
+The Noether current is:
+
+#math-box[$ J^mu = -i [phi^* partial^mu phi - phi partial^mu phi^*] $]
+
+This is precisely the electromagnetic current that a charged scalar particle carries. The conserved charge $Q = integral d^3 x space J^0$ is the total electric charge — so $U(1)$ symmetry is the symmetry that guarantees charge conservation.
+
+==== Energy-Momentum Tensor
+
+The most important application of Noether's theorem is *spacetime translation symmetry*. If physics is the same everywhere and at all times (which it is, by the cosmological principle), then the Lagrangian must be invariant under $x^mu -> x^mu + xi^mu$ for constant $xi^mu$.
+
+Under this translation, fields transform as $phi(x) -> phi(x + xi) approx phi(x) + xi^nu partial_nu phi(x)$, giving $(delta phi)/(delta xi^nu) = partial_nu phi$.
+
+Applying Noether's theorem for each component of $xi^nu$ produces *four* conserved currents — one for each spacetime direction. These are organized into the *energy-momentum tensor*:
+
+#math-box[$ T^(mu nu) = sum_n (partial cal(L))/(partial (partial_mu phi_n)) partial^nu phi_n - g^(mu nu) cal(L) $<energy-momentum>]
+
+with conservation law $partial_mu T^(mu nu) = 0$.
+
+The four conserved charges are:
+
+$ Q^nu = integral d^3 x space T^(0 nu) = (H, arrow(P)) = P^mu $
+
+That is: $T^(00)$ integrated over space gives the total *energy*, and $T^(0 i)$ gives the total *momentum*. The energy-momentum tensor literally encodes all the energy and momentum in the field.
+
+For the scalar field, the energy density is:
+
+$ T^(00) = sum_n (partial cal(L))/(partial dot(phi)_n) dot(phi)_n - cal(L) = pi dot(phi) - cal(L) = cal(H) $
+
+This is just the Hamiltonian density — perfectly consistent with $T^(00)$ being the energy density.
+
+#theory-box[The energy-momentum tensor defined via @energy-momentum is called the *canonical energy-momentum tensor*. It is not always symmetric in its indices. In general relativity, there is another definition where one varies the action with respect to the metric — this one is automatically symmetric and is often called the *Belinfante-Rosenfeld* or *metric* energy-momentum tensor. The two agree for symmetric cases, but differ in general. For electromagnetism, one needs to symmetrize the canonical one by hand (this is Problem 3.3 in Schwartz).]
+
+==== Currents — a general concept
+
+The word "current" in QFT has a broader meaning than just the Noether current. Currents appear in many roles:
+
+1. *Noether currents*: Associated with a symmetry, automatically conserved on-shell.
+
+2. *External currents*: A background configuration, like the charge density $rho(arrow(x))$ of a wire. They are *not* dynamical — they do not have their own kinetic terms:
+   $ J^0(x) = rho(x) "     " J^i(x) = v^i(x) $
+
+3. *Sources in Lagrangians*: A current $J^mu$ can appear as a source for a gauge field: $ cal(L) supset - A_mu J^mu $. This is how charged matter *sources* the electromagnetic field.
+
+4. *Placeholder notation*: Currents can package interaction terms for cleaner writing. For instance, $A_mu J^mu$ could represent $A_mu bar(psi) gamma^mu psi$ if $J^mu = bar(psi) gamma^mu psi$. This separation lets us study how the source produces the field and how the field then affects other things, independently.
+
+#hl[The key rule: a current is *never* dynamical — it never has its own kinetic term in the Lagrangian. The dynamical fields are things like $phi$ and $A^mu$; currents $J^mu$ are either external inputs or bookkeeping labels for interaction terms.]
+
+=== Coulomb's Law from Classical Field Theory
+
+This is a beautiful concrete calculation that shows how the field theory framework directly reproduces classical electrostatics, and introduces the crucial concept of *propagators*.
+
+Start with a point charge $e$ at the origin, represented as an external current:
+
+$ J^0(x) = e delta^3(arrow(x)) "          " J^i(x) = 0 $
+
+The Lagrangian for the electromagnetic field coupled to this source is:
+
+$ cal(L) = -1/4 F_(mu nu)^2 - A_mu J^mu $
+
+Applying the Euler-Lagrange equations to this Lagrangian yields *Maxwell's equations in the presence of a source*:
+
+$ partial_mu F^(mu nu) = J^nu $
+
+Expanding $F_(mu nu) = partial_mu A_nu - partial_nu A_mu$ and choosing the *Lorenz gauge* $partial_mu A^mu = 0$:
+
+$ square A^nu (x) = J^nu(x) $
+
+This has the formal solution:
+
+#math-box[$ A^nu (x) = 1/square J^nu (x) $]
+
+where $1/square$ is shorthand for the inverse of the d'Alembertian — defined precisely below. For our static point charge ($J^i = 0$, $J^0 = e delta^3(arrow(x))$), only $A^0$ is non-zero.
+
+==== Fourier Transform and the Propagator
+
+To actually compute $1/square$, we go to momentum space. The key identity is:
+
+$ square <-> -k^2 $
+
+More precisely, in Fourier space:
+
+$ [square^n f] (k) = (-k^2)^n tilde(f)(k) $
+
+So the operator $1/square$ becomes $-1/k^2$ in momentum space. Using this:
+
+$ A^0(x) = e/square delta^3(arrow(x)) = integral (d^3 k)/((2pi)^3) e/(arrow(k)^2) e^(i arrow(k) dot arrow(x)) $
+
+Evaluating this integral using contour integration gives:
+
+#math-box[$ A^0(x) = e/(4 pi r) $<coulomb-potential>]
+
+This is exactly the *Coulomb potential*! The field theory approach has reproduced the classical $1/r$ potential from first principles, purely from the Lagrangian and gauge invariance.
+
+=== Green's Functions and Propagators
+
+The Coulomb calculation reveals something much more general. In almost every QFT calculation, we will encounter:
+
+$ A^nu (x) = 1/square J^nu (x) $
+
+The inverse of the d'Alembertian is the *propagator* (or *Green's function*):
+
+#math-box[$ Pi(x, y) = -1/square "     defined as     " square_x Pi(x, y) = -delta^4(x - y) $]
+
+Its explicit form in momentum space is:
+
+$ Pi(x, y) = integral (d^4 k)/((2pi)^4) (e^(i k(x-y)))/k^2 $
+
+And then the field sourced by a current $J$ is:
+
+$ phi(x) = -integral d^4 y space Pi(x, y) J(y) $
+
+#hl[The propagator $Pi(x,y)$ encodes how disturbances in the field travel from point $y$ to point $x$. It depends *only on the kinetic terms* of the Lagrangian — it has nothing to do with the source. The source just tells you where to start; the propagator tells you how the influence spreads.]
+
+==== Perturbative Expansion and Feynman Diagrams
+
+The true power of the Green's function approach is in handling *interacting* theories. Consider a self-interacting field (like a simplified model of gravity where the graviton self-interacts):
+
+$ cal(L) = -1/2 h square h + lambda/3 h^3 + J h $
+
+The equation of motion is: $ square h - lambda h^2 - J = 0 $
+
+We cannot solve this exactly, but we can solve it *perturbatively in* $lambda$:
+
+- *Zeroth order* ($lambda = 0$): $h_0 = 1/square J$
+
+- *First order correction*: $square h_1 = lambda h_0^2$, so $h_1 = lambda/square (h_0 h_0) = lambda/square (1/square J dot 1/square J)$
+
+- *Full solution to order $lambda$*:
+$ h = 1/square J + lambda/square [1/square J dot 1/square J] + cal(O)(lambda^2) $
+
+This expansion has a beautiful pictorial representation — these are *Feynman diagrams*. The rules are:
+
+1. Draw a point $x$ and a line from $x$ to a new point.
+2. Either cap the line at a source $J$ (a "leaf"), or let it branch into two lines at a vertex, adding a factor of $lambda$.
+3. Each line is a *propagator* $Pi(x_i, x_j)$.
+4. Integrate over all internal points.
+
+#theory-box(title: "The Deep Insight: Feynman Diagrams from Field Theory")[
+  These Feynman diagrams are not just a convenient notation — they encode the exact perturbative solution to the classical equations of motion. Each diagram corresponds to a specific term in the perturbative expansion of $h(x)$, with:
+  - Lines $<->$ propagators $Pi(x_i, x_j)$
+  - Vertices $<->$ factors of $lambda$
+  - Endpoints $<->$ sources $J(x_i)$, integrated over
+
+  In quantum field theory (Chapter 7 and onward), the same Feynman rules appear — the only new ingredient is that lines can now *close in on themselves* (forming loops) because of quantum fluctuations. The quantum propagator is essentially the same $1/k^2$ object, with a specific $i epsilon$ prescription for handling the poles.
+  
+  #hl[The structure of perturbation theory in QFT — Feynman diagrams, propagators, vertices — is already fully visible at the classical level. Quantum mechanics "just" adds loops.]
+]
+
+For the concrete case of the Sun-Mercury gravitational interaction: the first diagram (linear in $1/J$) gives *Newton's potential*, and the second diagram (with one self-interaction vertex, proportional to $lambda ~ sqrt(G_N)$) gives the first *general relativistic correction* to Mercury's orbit.
 
 
 
@@ -1123,3 +1807,968 @@ From @matter-power-spectrum.png, we can see that the power spectrum is dominated
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pagebreak()
+= A1: Notes on no-nonsense quantum field theory
+
+
+_Hi, so this sections is dedicated to some topics that I have been learning on the side. For now it is based on this book called "No-nonsense quantum field theory" by Jakob Schwichtenberg. This is an amazing book, and I wish I had read this while I learnt QFT. But it is never too late, so I am planning on re-learning the entirety of QFT from this book, and I will be taking notes here._ 
+
+
+== Fields
+
+=== Scalar Fields 
+
+These are as simple as things can get. #hl[They are essentially just functions that take in a space-time point and return a number.] 
+
+A simple example is the inner product of two 4-vectors:  $x^mu y_mu$ 
+
+The number that is returned is a scalar, and it is invariant under Lorentz transformations. And this number is also given the name *field strength*, since it describes the strength of the field at that spacetime point. 
+
+A real world example of a scalar field would be the temperature distribution in a room. 
+
+=== Vector Fields 
+
+We all know what vector fields are, they are essentially just functions that take in a space-time point and return a 4-vector. 
+
+So the output 4-vector can in fact be written as two parts, one for describing the strength of the field and one for describing the direction of the field. So we can write a vector field as: 
+
+$ A_mu (x_mu) = epsilon_mu  times f(x_mu) $
+
+where $epsilon_mu$ describes the direction of the field and $f(x_mu)$ describes the strength of the field. This is quite similar to how we describe a vector in 3D space, where we can write it as a unit vector in the direction of the vector multiplied by the magnitude of the vector. 
+
+And similar to how the unit vector is normalized to 1, we can also normalize the direction vector $epsilon_mu$ to 1, or rather -1 since it is a 4-vector: 
+
+$ epsilon_mu epsilon^mu = -1 $
+
+And also similar to 3D space, we can represent the unit vector $epsilon_mu$ as a linear combination of basis vectors $epsilon_mu^lambda$, a simple example is: 
+
+$ epsilon_mu^0 = mat(i ; 0; 0 ; 0) "  " epsilon_mu^1 = mat(0 ; 1 ; 0 ; 0) "  " epsilon_mu^2 = mat(0 ; 0 ; 1 ; 0) "  " epsilon_mu^3 = mat(0 ; 0 ; 0 ; 1) $
+
+#hl[The $epsilon_mu$ is defined as the *polarization*]
+
+We can check that the basis vectors also satisfy the normalization condition, $epsilon_mu^lambda (epsilon^mu)^lambda = -1$
+
+\
+#theory-box(title: "Polarization of Gauge Fields")[
+  This brings us to an important point here. 
+
+  All polarizations that we can cook up mathematically don't have to physically exist. Only the polarizations that are consistent with the equations of motion of the field are physically relevant. 
+
+  This is important because often in physics, we are interested in *gauge fields*, which are special kinds of fields. (How are they special? This we will see in the later sections, but for now they are just some special vector fields). 
+
+  There are two types of gauge fields, massless and massive, and here is where polarization comes into the picture. 
+
+  - For *massive* gauge fields, there are only *3 independent polarizations*, so we only need 3 basis vectors to describe the direction of the field. 
+
+  - For *massless* gauge fields, there are only *2 independent polarizations*, so we only need 2 basis vectors to describe the direction of the field. 
+
+    This also means that an excitation of a massless gauge field can never be polarized in the direction of its movement.  
+
+]
+
+
+=== Spinors 
+
+The key takeaway in the way we define scalars and vectors are that: 
+
+#math-box[ Scalars and vectors are mathematical objects that are defined by their behaviour under a coordinate transformation.]
+
+So similar to scalars and vectors, we can define new quantities that are also defined by their own transformation rules. 
+
+One such quantity is called a *spinor*, which lie somewhere in between a scalar (which is invariant under a transformation) and a vector (which transforms like a 4-vector). 
+
+Specifically, we define the *Weyl spinors*, which are objects with 2 dimensions. This also implies that all the transformations are carried out using 2x2 matrices. 
+
+#hl[There are two kinds of *Weyl spinors*, the left-handed and the right-handed spinors. ] 
+
+The *left handed spinors*, represented by $psi_L$, transform under rotation (around the x-axis) as: 
+
+$ psi_L -> psi^'_L = R_(L, x) psi_L  $
+
+where $ R_(L, x) = mat(cos(theta slash 2), i sin(theta slash 2); i sin(theta slash 2), cos(theta slash 2)) $
+
+(Here $R_(L, x)$ is the rotation matrix for left-handed spinors around the x-axis) 
+
+Further, any boost along the z-axis can be represented as: 
+
+$ psi_L -> psi^'_L = B_(L, z) psi_L  $
+
+where $ B_(L, z) = mat(e^(phi/2), 0; 0, e^(-phi/2)) $ 
+
+and $phi$ denotes the rapidity, which is defined as: $tanh(phi) = v slash c$ 
+
+Similarly for the *right handed spinors*, represented by $psi_R$, transform under rotation (around the x-axis) as: 
+
+$ psi_R -> psi^'_R = R_(R, x) psi_R  $
+
+where $ R_(R, x) = mat(cos(theta slash 2), i sin(theta slash 2); i sin(theta slash 2), cos(theta slash 2)) $
+
+which if you notice is the same as the left-handed spinor rotation matrix, $R_(L, x) = R_(R, x)$ 
+
+Coming to boosts along the z-axis, the right-handed spinors transform as: 
+
+$ psi_R -> psi^'_R = B_(R, z) psi_R  $
+
+where $ B_(R, z) = mat(e^(-phi/2), 0; 0, e^(phi/2)) $
+
+which is actually different from the left-handed spinor boost matrix. 
+
+#hl[What we see is that the rotation matrices are the same for both left-handed and right-handed spinors, but the boost matrices are different, with swapped minus signs in the exponents.]
+
+We now introduce a new kind of transformation here, one which is discrete and not continuous like rotations and boosts. This is called the *parity transformation*, which is essentially a mirror reflection of the coordinates: $ arrow(x) -> -arrow(x) $
+
+Now notice this. The way we define the left and the right handed spinors come down to how their respective boosts, $B_(R, z)$ and $B_(L, z)$, are defined. But under a parity transformation, positive $z$ becomes negative $z$, and vice versa, which also flips the sign of the rapidity $phi$. 
+
+#hl[This essentially means that under a parity transformation, the left-handed spinor becomes a right-handed spinor and vice versa. A direct consequence of this is that the left-handed spinor also becomes a right-handed spinor and vice versa under a parity transformation, since the spinors are themselved defined on how their boosts are defined.] 
+
+$ psi_L -> psi_R " and " psi_R -> psi_L " under a parity transformation " $
+
+This motivates us to define a new kind of spinor, called the *Dirac spinor*, which is nothing but the combination of a left-handed and a right-handed spinor:
+
+$ psi = mat(psi_L ; psi_R) $
+
+And under a parity transformation, the Dirac spinor transforms as: 
+
+$ psi = mat(psi_L ; psi_R) -> mat(psi_R ; psi_L) $
+
+Although the dirac spinor has 4 components, it is not a 4-vector. It is a new mathematical object that transforms in its own way under coordinate transformations. 
+
+We next define how we perform the inner product of two spinors. Before we get into that, we quickly see that the inner product of two vectors are defined as: 
+
+$ A_mu B^mu = eta_(mu nu) A^nu  B^mu = A^0 B^0 - A^1 B^1 - A^2 B^2 - A^3 B^3 $
+
+where $eta_(mu nu)$ is the Minkowski metric and is the primary way to lower and raise indices of vectors. 
+
+Similarly, we define the *spinor metric* $epsilon_(a b)$, which is a 2x2 matrix that is used to lower and raise indices of spinors. It is defined as: 
+
+$ epsilon_(a b) = mat(0, 1; -1, 0) $
+
+which helps us define the inner product between two weyl spinors to be: 
+
+$ chi_a chi^a = epsilon_(a b) chi^b chi^a $
+
+This gives us a scalar quantity between two spinors. 
+
+Now what would happen if we were to take the inner product of a left-handed spinor and a right-handed spinor? Well, we can define the inner product between a left-handed spinor and a right-handed spinor as: 
+
+$ psi_L^dagger psi_R = (psi_L^dagger)^a (psi_R)_a = epsilon^(a b) (psi_L^dagger)_b (psi_R)_a $
+
+Similarly, $ psi_R^dagger psi_L = (psi_R^dagger)^a (psi_L)_a = epsilon^(a b) (psi_R^dagger)_b (psi_L)_a $
+
+#hl[The product of a left-handed spinor and a right-handed spinor can only be done when one of them is complex transposed.]
+
+
+\
+==== The "spin" in spinors 
+
+Spin is an intrinsic property of particles, similar to how mass and charge are intrinsic properties of particles. Similar to how different particles have different charges, they also have different spins. 
+
+- *Spin 0*: These particles are also called *scalar particles*, because they are described by scalar fields. The Higgs boson is the only example of a fundamental scalar particle that we know of, and this guys is responsible for giving mass to all the other particles. 
+
+- *Spin 1/2*: These particles are also called *fermions*, because they are described by spinor fields. All the matter particles (like electrons, neutrinos, quarks) are fermions. 
+
+- *Spin 1*: These particles are also called *vector bosons*, because they are described by vector fields. The photon, gluon, W and Z bosons are all examples of vector bosons.
+
+
+Now consider for example a spin 1/2 particle, like an electron. The spin of the electron can be either "up" or "down", which is a binary choice, and can never be zero. #hl[This means that no matter along which axis we choose to measure the spin of the electron, we will always get either "up" or "down".] Thus every state of the particle must either be spin up or spin down. 
+
+The up and down states are represented in Weyl spinors as: 
+
+$ "up: " mat(1; 0) "    " "down: " mat(0; 1) $
+
+And the general form of the Weyl spinor can be written as a linear combination of the up and down states: 
+
+$ mat(a ; b) = a mat(1;0) + b mat(0;1) $
+
+where $a$ and $b$ are related to the probabilities of measuring the spin to be up or down respectively. 
+
+==== Why two kinds of spinors? 
+
+As we saw before, we have two kinds of Weyl spinors, the left-handed and the right-handed spinors. The question is, why do we need two kinds of spinors? 
+
+The answer lies in the fact that Nature has a favourite child. The weak interaction, which is responsible for radioactive decay, is a chiral interaction. #hl[This means that the weak interactions only occur with left-handed particles, described by left-handed spinors. ]
+
+The reason why this happens is not exactly known. We just know from observations that this is true and we have built a model around that. 
+
+== Gauge Fields 
+
+_(This entire section is better understood with examples and analogies, so I am adding a continued example starting from here till the end of this section. This would be within the blue boxes.)_
+
+=== Field Spaces
+
+Before we understand what gauge fields are, we first look at something called *field spaces*. Instead of defining them, its easier to understand them by looking at an example. 
+
+
+#theory-box(title: "Temperature Field Space")[
+  So as we saw before, we can consider the temperature to be a scalar field, which is a function that takes in a space-time point and returns a number, which is the temperature at that point in our case. 
+
+  Now instead of imagining the temperature at a point to be a number, we can instead imagine a "ghost" number line floating at that point with the temperature value marked on the line, similar to say a thermometer. 
+
+  We can then assign this "ghost" number line to every point in space-time, and all these lines together form the *field space*. The field space is not a ghost, but we think of them to be an extra or "hidden" dimension that is attached to every point in space-time. 
+
+  #figure(image("images/temperature-field-space.png", width: 40%), caption: [A representation of a 1D field space existing over a 2D space-time])<temperature-field-space.png> 
+]
+
+The fun part about field spaces is that since in a way they are abstract quantities, we can layer multiple field spaces over the same space-time. For example, we can have a temperature field space and a pressure field space existing over the same space-time. 
+
+And these field spaces are typically disconnected from the space-time, meaning disturbances or waves in the field space only affect the field strength at that point in space-time, and not the space-time itself. 
+
+=== Local Coordinate Systems
+
+Now that we understand what field spaces are, next we look at the coordinate systems in these field spaces. 
+
+#theory-box[
+  Going back to our analogy of the temperature field space, we can imagine a thermometer at every point in space-time. Each thermometer in the field space has its zero point. The zero point is essentially the origin of the coordinate system in the field space.
+
+  Now there are two possibilities here: 
+
+  + The zero point and scale of the thermometer is the same for all points in space-time. This means that the coordinate system in the field space is the same for all points in space-time. 
+  
+   It really does not matter what the zero point exactly is, because all we care about is the difference in temperature between two points in space-time (similar to how we only care about the difference in potential between two points in space, not the actual value of the potential).
+
+    So when we change the origin of our coordinate system by some value, then every thermometer in the field space also changes its zero point by the same value. This is called a *global transformation*, since the transformation is applied to all points in space-time. 
+
+    #figure(image("images/global-shift.png", width: 70%), caption: [Global Shift])<global-shift.png>
+
+
+  + The other possibility is that the zero point is different for different thermometers. So the origins of the coordinate systems in the field space are different for different points in space-time. 
+
+   And similar to how we performed a global transformation, we can also perform a *local transformation*, where we change the origin of the coordinate system in the field space at each point in space-time by a different value. 
+
+   #figure(image("images/local-shift.png", width: 70%), caption: [local shift])<local-shift.png>
+
+
+  #hl[A simple analogy to seal the deal: ]
+
+  _so say you and your friend are in the same room but at two different places. Both of you have a thermometer that you are measuring temperature from._
+
+
+  _Now normally both your thermometers would maybe start from a least temperature of 0 C and from there you get say 25 C and your friend measures some 30 C so then you can easily just subtract the two values and find the difference in temperature between the two points._
+
+
+  _But this is only that simple coz both of your origin (i.e. starting point) is at 0 C, but what if it wasnt the same? _
+
+
+  _Now say you actually walk over to your friend's spot and measure the temp there with your thermometer. And say your friend's thermometer is showing 0 C but your thermometer is actually showing 10 C. That means his 10 C is actually corresponding to your 0 C, so both your starting points are not the same right, your friend according to you is clearly having 10 C more, say coz his thermometer is malfunctioning and the base value is shifted by 10 C. _
+
+
+  _So how would find the actual difference in temperature? Your friend's thermometer is ahead of yours by 10C so then whatever value he tells, you subtract 10 from that and the result value you can compare with your thermometer value and that would be the actual temperature difference between the two points. So in our example your thermometer says 25 C, your friend tells you his thermomeeter reading to be 30 C but you subtract 10 from it so it is actually 20 C. So the final answer is that your friend's spot is cooler by 5 C._
+]
+
+#hl[Be it a global or a local coordinate system/transformation, the physics of the system should not change, since the field strength is what determines the physical behavior.] This is called *gauge invariance * and it is a fundamental principle in physics.
+
+Using local coordinates is confusing since our origins are not the same for all points in space-time. So we need a way to first check how the origins are changing from point to point in space-time. This is done using a *connection*, which is a mathematical object that tells us how the origins of the coordinate systems are changing from point to point in space-time. 
+
+To understand how we can use these connections practically, let's look at a simple example. 
+
+#figure(image("images/connection-relations.png", width: 100%), caption: [Connection Relations ])<connection-relations.png>
+
+Consider two points in spacetime, described by the coordinates $arrow(n)$ and $arrow(n) + arrow(e)_1$, where $arrow(e)_1$ is the basis vector along the x-axis (essentially we are taking two points that are right next to each other). 
+
+Now we define the field strength at point $arrow(n)$ with respect to the local coordinate system at that point as $phi.alt_(arrow(n)) (arrow(n))$. And similarly, we define the field strength at point $arrow(n) + arrow(e)_1$ with respect to the local coordinate system at that point as $phi.alt_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1)$. These are represented by the yellow arrows in @connection-relations.png.
+
+As a general rule the subscripts denote whose local coordinate system we are using to define the field strength, and the brackets denote the point in space-time at which we are measuring the field strength. So for example, the value $phi.alt_(arrow(n)) (arrow(n) + arrow(e)_1)$ denotes the field strength at point $arrow(n) + arrow(e)_1$ with respect to the local coordinate system at point $arrow(n)$, and vice-versa. These are represented by the red arrows in @connection-relations.png.
+
+The shift between the two local coordinate systems is denoted by $A_(arrow(n)) (arrow(n) + arrow(e)_1)$, which is the connection between the two points. Particularly it represents how much the coordinate system at $arrow(n) + arrow(e)_1$ is shifted with respect to the coordinate system at $arrow(n)$. This is represented by the blue dashed line in @connection-relations.png.
+
+In such a scenario, say we are interested in the true difference in field strength between the two points, $d_1$, represented by the white arrow in @connection-relations.png. To calculate this, we must first shift all the field strengths to the same local coordinate system, and then take the difference. So we can write: 
+
+$ d_1 = phi.alt_(arrow(n)) (arrow(n)) - phi.alt_(arrow(n)) (arrow(n) + arrow(e)_1) $
+
+From @connection-relations.png we can write $ phi.alt_(arrow(n)) (arrow(n) + arrow(e)_1)$ as: 
+
+$ phi.alt_(arrow(n)) (arrow(n) + arrow(e)_1) = phi.alt_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1) + A_(arrow(n)) (arrow(n) + arrow(e)_1) $
+
+Then we can write the difference in field strength between the two points as: 
+
+$ d_1 = phi.alt_(arrow(n)) (arrow(n)) - phi.alt_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1) - A_(arrow(n)) (arrow(n) + arrow(e)_1) $
+
+This was just in the x-direction, but we can do the same for any direction, so as a generalization we have: 
+
+$ d_i = phi.alt_(arrow(n)) (arrow(n)) - phi.alt_(arrow(n) + arrow(e)_i) (arrow(n) + arrow(e)_i) - A_(arrow(n)) (arrow(n) + arrow(e)_i) $
+
+Now taking the continuous limit, we can write the difference in field strength between two points as: 
+
+$ D_i (arrow(x)) = partial_i phi.alt - A_i (arrow(x)) $
+
+which generalized to the 4-dimensional space that we usually work with, we get: 
+
+#math-box[$ D_mu (x) = partial_mu phi.alt - A_mu (x) $]
+
+This here is called the *covariant derivative*.#hl[ This is an important quantity that we would frequently use since $partial_mu$ compares the field strengths directly without taking into account the local coordinate systems, while $D_mu$ takes into account the local coordinate systems and gives us the true difference in field strength between two points.]
+
+#theory-box(title: "A simple example on how we use the covariant derivative")[
+
+  For a simple example on how we actually incorporate the covariant derivative in our calculations, consider the lagrangian of a fermionic field: 
+
+  $ cal(L) = dash(psi)(x) [i gamma^mu partial_mu - m ] psi(x) $
+
+  Now if we peform a global transformation on the field, $psi -> psi^' = e^(i alpha) psi$, then on substituting this into the lagrangian we find that the lagrangian remains unchanged, $cal(L) = cal(L)^'$. This was only possible since the transformation was global, i.e. the value of $alpha$ was the same for all points in space-time. 
+
+  But now say $alpha$ depends on the point in space-time, $alpha = alpha(x)$. Then the transformation is local, and on substituting this into the lagrangian we find that the lagrangian changes, $cal(L) != cal(L)^'$. 
+
+  To fix this, we can replace the $partial_mu$ with the covariant derivative $D_mu$, by setting $ A_mu (x) = partial_mu alpha(x) $ 
+  
+  With this, the lagrangian remains unchanged under a local transformation, $ cal(L) = cal(L)^' = dash(psi)(x) [i gamma^mu D_mu - m ] psi(x) $
+
+]
+
+=== Imperfect connections 
+
+As the name suggests, the next idea we will be dealing with is that maybe the connections between the local coordinate systems are not perfect. #hl[This means that if we were to go from one point in space-time to another, and then back to the original point, the local coordinate system at the original point may have changed.] To understand this, let's look at a small example. 
+
+#theory-box[
+   Ok so continuing with our previous example about temperatures in room.
+
+
+Now every point in that room would have a temperature right. Few spots in the room, like closer to the AC or something, would have a lower temperature while other spots will have a higher temperature.
+
+
+You have your trust thermometer with you in hand which you know for a fact is not faulty, unlike the one your friend had. So you plan to go around measuring the temperature at different points in the room. You start off at say point A and you measure say 20 C and you go around the room in a loop, measuring temperature at different points. At the end you come back to A and measure the temperature there again, but to your surprise you see that your thermometer now reads 25 C, there is a 5 C increase!
+
+
+Now you know for sure that your thermometer is not acting up, that thing is doing its job perfectly. But then what could explain this increase in temperature at A?
+
+
+The answer lies in the observation that maybe the 0 C point of your own thermometer increased somehow while you travelled in that path, and that led to a 5 C increase displaying by your thermometer. But the important point to note here is that its not the fault of your thermometer, it is actually the fault of the space itself thats around you.
+
+
+To actually better understand how the space itself affects things, you build a new device. This device, call it zero-measurer, measures the starting 0 C at each point in space (we'll call the value output by the zero-measurer the zero-point for convenience). So for example, if you take the zero-measurer and stand at the point where your friend was standing then it would read 10 C, because as you previously noted your friend's thermometer was shifted by 10 C higher. The thermometers were not the ones at fault, it's the space itself!
+
+
+So now what you do is stand at point A again and calibrate the zero-measurer to be 0 here. Now you go around that same loop that you had taken before and once you come back to A you see that the zero-measurer indeed says 5 C, which matches the 5 C increase that you had seen when you used your thermometer. So your zero-measure initially was 0 and then it went to 5 C after you completed a loop and came back to the same place.
+
+
+So the thing is like how temperature is itself a field (which is just a fancy way of telling that it has some value at every point in space), your zero-measure is also a field. It also has a value in every point in space and depending on what path you take through space the value outputted by the zero-measurer changes, like you had previously experienced.
+
+
+This in itself is a strange property, how is the zero-measure changing its value depending on what path you take and come back? The answer lies in that the space here is not actually flat. Put it simply, the existence of temperature values at different points in that room actually ends up curving the space around there, so when you actually measure the temperature or the zero-point at some point in the room, and then come back to that point again and do the same measurements, they are not the same since the space itself is curved in a weird way (which actually is curved in the first place due to the existence of temperature in the room, so it becomes an infinite cycle of sorts).
+
+
+So as physicists the best way to study say the temperature field is by first studying the zero-measure field and how that interacts with the space around and how it evolves with time. Once we fully understand how the zero-measure works, then we can start worrying about temperature since the temperature measurement itself is very much dependent on the zero-point value at that point in space. So our goal is to first understand this zero-point thingy then understand how temperature works.
+
+
+And this zero-point field is called the gauge field. 
+]
+
+Okay so to see this in action, let's look at some calculation. 
+
+If we want to describe the field strength at point $arrow(n)$ with respect to the local coordinate system at a nearby space-time point, we can write: 
+
+$ phi.alt_(arrow(n) + arrow(e_i)) (arrow(n)) = phi.alt_(arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e_i)) $
+
+So if I go from the coordinate system at $arrow(n)$ to $arrow(n) + arrow(e)_1$ then I need to subtract $A_(arrow(n)) (arrow(n) + arrow(e)_1)$. Similarly if I want to go from the coordinate system at $arrow(n) + arrow(e)_1$ to $arrow(n)$ then I need to add $A_(arrow(n)) (arrow(n) + arrow(e)_1)$.
+
+So say I start with the field strength at point $arrow(n)$ with respect to the local coordinate system at that point, $phi.alt_(arrow(n)) (arrow(n))$, and I describe this in the coordinate system at point $arrow(n) + arrow(e_1)$, then I come back to my original coordinate system at point $arrow(n)$. This cycle can be represented as: 
+
+$ phi.alt_(arrow(n)) (arrow(n)) -> phi.alt_(arrow(n) + arrow(e)_1) (arrow(n)) -> phi.alt_(arrow(n)) (arrow(n)) $
+
+$ => phi.alt_(arrow(n)) (arrow(n)) -> phi.alt(arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e)_1) -> [phi.alt(arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e)_1)] + A_(arrow(n)) (arrow(n) + arrow(e)_1) = phi.alt(arrow(n))  $
+
+So we see here that the field strength at point $arrow(n)$ with respect to the local coordinate system at that point remains unchanged after going through a cycle. 
+
+But now say, we do this in 2 dimensions. 
+
+So we go from point $arrow(n)$ to $arrow(n) + arrow(e)_1$, then to $arrow(n) + arrow(e)_1 + arrow(e)_2$, then to $arrow(n) + arrow(e)_2$, and finally back to $arrow(n)$. This cycle can be represented as: 
+
+$ phi.alt_(arrow(n)) (arrow(n)) -> phi.alt_(arrow(n) + arrow(e)_1) (arrow(n)) -> phi.alt_(arrow(n) + arrow(e)_1 + arrow(e)_2) (arrow(n)) -> phi.alt_(arrow(n) + arrow(e)_2) (arrow(n)) -> phi.alt_(arrow(n)) (arrow(n)) $
+
+
+We can expand this using connections as: 
+
+$ phi.alt_(arrow(n) + arrow(e)_1) (arrow(n)) =  phi.alt_(arrow(n)) (arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e)_1) $
+
+$ phi.alt_(arrow(n) + arrow(e)_1 + arrow(e)_2) (arrow(n)) =  phi.alt_(arrow(n) + arrow(e)_1) (arrow(n)) - A_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1 + arrow(e)_2) $
+
+$ phi.alt_(arrow(n) + arrow(e)_2) (arrow(n)) =  phi.alt_(arrow(n) + arrow(e)_1 + arrow(e)_2) (arrow(n)) - A_(arrow(n) + arrow(e)_1 + arrow(e)_2) (arrow(n) + arrow(e)_2) $ 
+
+Combining all these, the final field strength at point $arrow(n)$ after the loop can be written as: 
+
+$ phi.alt_(arrow(n)) (arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e)_1) - A_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1 + arrow(e)_2) - A_(arrow(n) + arrow(e)_1 + arrow(e)_2) (arrow(n) + arrow(e)_2) - A_(arrow(n) + arrow(e)_2) (arrow(n)) $
+
+Now we can use an obvious property that: 
+
+$ A_(arrow(n)) (arrow(n) + arrow(e)_1) = - A_(arrow(n) + arrow(e)_1) (arrow(n)) $
+
+using which the above comes to: 
+
+$ phi.alt_(arrow(n)) (arrow(n)) - A_(arrow(n)) (arrow(n) + arrow(e)_1) - A_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1 + arrow(e)_2) + A_(arrow(n) + arrow(e)_2) (arrow(n) + arrow(e)_1 + arrow(e)_2) + A_(arrow(n)) (arrow(n) + arrow(e)_2) $
+
+$ phi.alt_(arrow(n)) (arrow(n)) - [  (A_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1 + arrow(e)_2) - A_(arrow(n)) (arrow(n) + arrow(e)_2)) - (A_(arrow(n) + arrow(e)_2) (arrow(n) + arrow(e)_1 + arrow(e)_2) - A_(arrow(n)) (arrow(n) + arrow(e)_1) ) ] $
+
+We define the terms inside the square brackets with a new quantity: 
+
+$ F_(1 2)(arrow(n)) =   (A_(arrow(n) + arrow(e)_1) (arrow(n) + arrow(e)_1 + arrow(e)_2) - A_(arrow(n)) (arrow(n) + arrow(e)_2)) - (A_(arrow(n) + arrow(e)_2) (arrow(n) + arrow(e)_1 + arrow(e)_2) - A_(arrow(n)) (arrow(n) + arrow(e)_1) ) $
+
+Then, the final field strength at point $arrow(n)$ after the loop can be written as:
+
+$ phi.alt_(arrow(n)) (arrow(n)) - F_(1 2)(arrow(n)) $
+
+Now if the connections were perfect, then $F_(1 2)(arrow(n)) = 0$, and the final field strength would be equal to the initial value. But if this isn't the case then $F_(1 2)(arrow(n)) != 0$.
+
+So if $F_(1 2)(arrow(n)) > 0$ then the final field strength will be lesser than the initial value, and if $F_(1 2)(arrow(n)) < 0$ then the final field strength will be greater than the initial value. 
+
+This can be generalized into the 4-dimensional continuous space-time, to get: 
+
+#math-box[$ F_(mu nu)(x) = partial_mu A_nu (x) - partial_nu A_mu (x) $]
+
+
+
+=== Finally, Gauge Fields
+
+In the last step, we promote the connections to be actual fields, which are called *gauge fields*. We can imagine these gauge fields to provide a "background" to the field space, on top of which the field strength is defined and evolves. 
+
+Further we can promote these fields into fully fledged physics objects by letting the gauge fields themselves evolve dynamically. This means we can write down equations of motion for the gauge fields themselves, and they can have their own dynamics independent of the field strength.
+
+#hl[It actually turns out that the reason we have a non-zero gauge field (i.e. why the connections are imperfect) is because of the existence of a field strength in the first place! When fields have a non-zero value, it automatically curves the field space, which leads to imperfect connections and hence a non-zero gauge field. ]
+
+This was just the beginning to gauge fields. In further sections we will see how gauge fields are related to the fundamental forces of nature, and how they are responsible for the interactions between particles.
+
+
+== Waves, waves, waves! 
+
+We love waves! If not, we need to learn to love them, coz they're everywhere. So this is a short chapter on wave mechanics and dynamics, which would be foundational when we start talking about field dynamics since a lot of that also occurs through waves. 
+
+It turns out that when we input energy into our fields, the structures that emerge are wave-like, giving an almost membrane like properties for our fields. 
+
+=== The classical wave equation 
+
+Any time we come across an equation of the form similar to $ (partial_t^2 - c^2 partial_x^2) phi = 0  $ then we are working with waves. This above equation is the *wave equation*. 
+
+To solve the wave equation we can consider solutions of the form: 
+
+$ phi(x, t) = cos (omega t - k x) "  or  " phi(x, t) = sin (omega t - k x) $
+
+where $omega$ is the angular frequency and $k$ is the wavenumber defined by $k = 2 pi slash lambda$ 
+
+We can combine both the cosine and sine solutions together and write them in terms of the exponential: 
+
+$ e^(i (omega t - k x)) = cos(omega t - k x) + i sin (omega t - k x) $
+
+And so we can instead use the exponential for easier calculations. If we need the cosine solutions we can just take the real part and for the sine solutions we can just consider the imaginary part, 
+
+$ phi(x, t) = e^(i (omega t - k x)) $
+
+#hl[Solutions of these form describe plane waves, which are essentially waves that have the same amplitude and stretch out to infinity in both space and time.]
+
+Upon substituing these solutions into the wave equation, we find a relation that must be satisfied: 
+
+$ omega = c k $
+
+which is called the *dispersion relation*. 
+
+The solutions to this classical wave equation are of the form of *plane waves*, which are defined as waves whose amplitude is constant as the wave propagates through space. 
+
+#figure(image("images/plane-waves-1.png", width: 70%), caption: [Initial position of a plane wave])<plane-waves-1.png> 
+
+#figure(image("images/plane-waves-2.png", width: 70%), caption: [The plane wave at a later time, has moved to the right])<plane-waves-2.png>
+
+The speed with which the wave propagates (i.e. a point on the wave moves to the right) is called the *phase velocity*, and is given by: 
+
+$ v_p = omega / k = c $
+
+#theory-box[
+  Note that the phase velocity is the same for no matter what wave, i.e. it is independent of the frequency or wavelength of the wave. This means all waves described by the classical wave equation propagate at the same speed, $c$. 
+]
+
+=== Dispersed waves 
+
+We can add another term to the wave equation, which we kindly call the *mass* or *dispersion* term, which gives us the *dispersed wave equation*: 
+
+$ (partial_t^2 - c^2 partial_x^2 + m^2) phi = 0  $
+
+We use the same ansatz as before,  $ phi(x, t) = e^(i (omega t - k x)) $
+
+Upon substituting this into the dispersed wave equation, we find a new dispersion relation that must be satisfied: 
+
+$ omega^2 = c^2 k^2 + m^2 $
+
+Now if we calculate the phase velocity, we find: 
+
+$ v_p = omega / k = sqrt(c^2 + m^2 / k^2) $
+
+Here we see that #hl[the phase velocity is no longer independent of the frequency or wavelength of the wave, and depends on the wavenumber $k$. This means that different waves with different frequencies and wavelengths will propagate at different speeds.] 
+
+
+=== Wave Packets 
+
+Now, an important thing to note is that multiple plane-wave solutions of the wave equation that we have seen before can be added together to form a new solution. This comes directly from the property that the wave equation is linear, and so any linear combination of solutions is also a solution. 
+
+Using this, we can construct a new kind of wave, called a *wave packet*, which is essentially a superposition of multiple plane waves. We work with wave packets because they are more localized in space, unlike plane waves which are spread out to infinity. And so in a  way can be a better representation of particles. 
+
+So if particles are represented by wave packets, then instead of dealing with a complicated solution of the wave equation, we can instead decompose it into a superposition of plane waves, and then work with the plane waves instead, which is much easier to handle. 
+
+So to study the evolution of a wave-packet, we can decompose it into plane waves, study the evolution of each plane wave, and then combine them back together to get the evolution of the wave-packet. This applies to how the waveform moves and transforms over time. 
+
+Suppose we consider a wave-packet that is a superposition of plane waves solutions of the dispersed wave equation, then we know from before that each plane wave will have a different phase velocity. This leads to the phenomenon of *dispersion*, where the wave-packet spreads out over time, since different plane waves move at different speeds, which can be seen in the following figures.
+
+#figure(image("images/wave-packet-1.png", width: 100%), caption: [The waveform at $t = 0$])<wave-packet-1.png>
+
+#figure(image("images/wave-packet-2.png", width: 100%), caption: [The waveform at $t = 1$, the wave-packet is lot more dispersed as compared to its initial state])<wave-packet-2.png>
+
+So along with the movement of a wave-packet, we also have the spreading of the wave-packet over time. 
+
+*Note* here that the spreading of the wave-packet does not occur in the classical wave equation, since all plane waves move at the same speed. But in the dispersed wave equation, the spreading occurs since different plane waves move at different speeds.
+
+#theory-box[In the context of modern field theory, the dispersion term is known as the mass term. From there it follows that if we represent a particle as a wave-packet, then we have two kinds of partilces based on whether the wave equation defining the particle has a mass term or not. If the wave equation does not have the mass term, then it is a massless particle (like a photon), and these do not disperse over time since all the component plane waves move at the same speed. If the wave equation has a mass term, then it is a massive particle (like an electron), and these disperse over time since different component plane waves move at different speeds. And in this context, the dispersion of the particle wave-packet corresponds to decay of the particle over time. Additionally the more massive the particle is, the more quickly it disperses, and hence the faster it decays.] 
+
+With the basics of waves out of the way, we can now move on to the lagrangians that describe the dynamics of different fields, and how we can use the wave mechanics to understand their solutions. 
+
+
+== Free Fields
+
+In this section, we will be discussing four important fields: 
+
+- Free Scalar Field governed by the Klein-Gordon equation 
+- Free Spinor Field governed by the Dirac equation
+- Free Massive Gauge Field governed by the Proca equation 
+- Free Massless Gauge Field governed by the Maxwell equation
+
+which is also diagrammatically described below.
+ 
+
+#figure(image("images/free-fields-flowchart.png", width: 100%), caption: [Free Fields discussed in this chapter])<free-fields-flowchart.png>
+
+
+#theory-box[
+  Additionally, 
+
+  - The Dirac equation will tell us how left and right chiral spinors constantly oscillate into each other.
+  - The Proca equation will tell us that a massive gauge field has only 3 independent degrees of freedom i.e. polarizations.
+  - The Maxwell equation will tell us that a massless gauge field has only 2 independent polarizations.
+]
+
+#pagebreak()
+
+=== Free Scalar Field
+
+The free scalar field is described by the lagrangian: 
+
+#math-box[$ cal(L) = 1/2 (partial_mu phi)(partial^mu phi) - 1/2 m^2 phi^2 $]
+
+where the first term is called the *kinetic term* and the second term is called the *mass term*.
+
+Using the Euler-Lagrange equations, we can derive the equation of motion for the free scalar field, which is called the *Klein-Gordon equation*: 
+
+#math-box[$ (partial_mu partial^mu + m^2) phi = 0 $]
+
+We can draw an analogy between the free scalar field and a system of coupled harmonic oscillators. #hl[We imagine that at every point in space, there is a harmonic oscillator that can oscillate up and down. The oscillators at different points in space are coupled to each other, so that when one oscillator moves, it affects the neighboring oscillators.] The field strength at each point in space is analogous to the displacement of the harmonic oscillator at that point. 
+
+#theory-box(title:"The mass and mattress analogy")[
+
+Another important aspect of the Klein-Gordon Lagrangian is the meaning of the parameter $m$. In our oscillator picture, the parameter $m$ is directly related to the harmonic restoring force of the spring at each point. Therefore, if we set $m = 0$ we assume that there is no such restoring force and thus no spring at each point. #hl[In other words, if we plug] $m = 0$ #hl[into our Lagrangian, we are dealing with a system of mass points that are connected to their neighbors, while for] $m != 0$ #hl[we describe a system of connected mass points that are pulled back to their equilibrium position through a harmonic force.]
+
+In the continuum limit, our one-dimensional system of coupled mass points becomes a string. For $m = 0$ this string can wiggle freely, while for $m != 0$ there is a restoring force at each point. But note that for $m = 0$ the mass points at each location are eventually also pulled down as a result of their connection to their neighbors, i.e. through string tension.
+
+In intuitive terms, we can imagine that a field with a large mass parameter $m$ is analogous to a hard mattress, while a field with a small mass parameter $m$ is analogous to a soft mattress. This follows because from the oscillator chain perspective, the parameter $m$ is proportional to the stiffness $k$ of the spring at each location.
+
+Moreover, we will learn later that in quantum field theory, the parameter $m$ encodes, in some sense, a lower energy threshold. If too little energy is available, there will be no noticeable excitation in the field. In other words, for fields with a large mass parameter $m$ it is much harder to cause any noticeable field excitation, while a field with small $m$ can be excited quite easily. If there is not enough energy available to excite a field with large $m$, the energy will go into fields with a small mass parameter. Using our mattress picture once again, we can imagine that we need much more energy to cause any noticeable disturbance of a hard mattress, while it is easy to disturb a soft mattress.
+
+]
+
+We can also modify the lagrangian by adding more terms to it, which adds more dynamics to the system, and in most cases it only gives us a small improvement in accuracy. But in high energies, these small improvements can lead to large differences in the dynamics of the system. For example, we can add a term $lambda phi^4$ to the lagrangian, which gives us: 
+
+$ cal(L) = 1/2 (partial_mu phi)(partial^mu phi) - 1/2 m^2 phi^2 - lambda/4! phi^4 $
+
+which actually is the lagrangian related to a process known as spontaneous symmetry breaking, which we will be looking at soon. 
+
+\ 
+
+That brings us to the solutions of the Klein-Gordon equation. We see that the Klein-Gordon equation is just a dispersed wave equation in 4D space-time, and so we can use the same ansatz as before, $ phi(x, t) = e^(i (omega t - k x)) $
+
+and we get the same dispersion relation as before: 
+
+$ omega^2 =  k^2 + m^2 $
+
+Now, we can infact introduce a new 4-vector, the $k^mu$ vector defined by: 
+
+$ k^mu = (omega, arrow(k)) $
+
+This gives us a convenient form where we can write the dispersion relation as: 
+
+$ k_mu k^mu = m^2 $
+
+and also the solution to the Klein-Gordon equation as:
+
+$ phi(x) = e^(plus.minus i k_mu x^mu) $
+
+#theory-box[Since the solutions are complex, we say that the field is complex, i.e. it takes in a 4D space-time point and it spits out a complex number (instead of a normal real number)]
+
+Thus, the general solution to the Klein-Gordon equation can be written as a sum of plane waves, which is a superposition of the solutions we have seen before: 
+
+$ phi(x) = integral (dif^4 k)/ (2 pi)^4 [a(k^mu) e^(i k_mu x^mu) + b(k^mu) e^(-i k_mu x^mu)] $
+
+where $a(k^mu)$ and $b(k^mu)$ are the coefficients that determine the contribution of each plane wave to the overall solution.
+
+Now if we were working with a *real* scalar field, then we would need to enforce the condition that $phi(x)$ is real, which is done by setting: 
+
+$ phi^dagger (x) = phi(x) $
+
+And in doing that, we get: 
+
+$ phi(x) = integral (dif^4 k)/ (2 pi)^4 [a(k^mu) e^(i k_mu x^mu) + a^dagger (k^mu) e^(-i k_mu x^mu)] $
+
+Further, if we are only interested in the positive frequency solutions, we can further simplify this to get the final form of the general solution to the Klein-Gordon equation for a real scalar field:
+
+#math-box[$ phi(x) = integral difp(k) 1/sqrt(2 omega_k) [a(arrow(k)) e^(-i k_mu x^mu) + a^dagger (arrow(k)) e^(i k_mu x^mu)] $]
+
+Note that, $a(arrow(k)) = a(k^mu) slash sqrt(2 omega_k)$
+
+Similarly, for *complex* scalar fields, we can write the general solution as:
+
+#math-box[$ phi(x) = integral difp(k) 1/sqrt(2 omega_k) [a(arrow(k)) e^(-i k_mu x^mu) + b^dagger (arrow(k)) e^(i k_mu x^mu)] $]
+
+
+\
+
+=== Free Spinor Field
+
+The lagrangian density describing a free spinor field is given by:
+
+$ cal(L) = dash(psi)(x) [i gamma^mu partial_mu - m ] psi(x) $
+
+where $psi(x)$ is the Dirac spinor field, $dash(psi)(x)$ is the conjugated spinor field, $gamma^mu$ are the Dirac gamma matrices, which are all defined below: 
+
+
+$ dash(psi) (x) = psi^dagger (x) gamma^0 $
+
+#figure(image("images/gamma-matrices.png", width: 60%))<gamma-matrices.png>
+
+and $m$ is the mass of the spinor field.
+
+Based on the gamma matrices, we define the gamma 4-vector as $gamma^mu = (gamma^0, gamma^1, gamma^2, gamma^3)$
+
+Further, the most important property of the gamma matrices is that they satisfy the *Clifford algebra*, which is given by the following *anti-commutation relation*:
+
+#math-box[$ {gamma^mu, gamma^nu} = gamma^mu gamma^nu + gamma^nu gamma^mu = 2 eta^(mu nu) I_(4 times 4) $]
+
+where $eta^(mu nu)$ is the Minkowski metric and $I_(4 times 4)$ is the $4 times 4$ identity matrix.
+
+#theory-box(title: "Dirac basis")[
+
+  Something interesting to note here is that the gamma matrices are not unique, and there are multiple representations of the gamma matrices that satisfy the Clifford algebra. The representation we have used here is called the *Weyl basis* or *chiral basis*, but there is another another basis that we can work with called the *Dirac basis*. 
+
+  Suppose we make a change of basis using a unitary transformation $U$, (i.e. $U^dagger U = I$) then our spinor field transforms as: 
+
+$ psi(x) -> psi^'(x) = U psi(x) "    " dash(psi)(x) -> dash(psi)^'(x) = dash(psi)(x) U^dagger $ 
+
+Substituting this into our lagrangian, we get: 
+
+$ cal(L) = dash(psi)^'(x) [i U^dagger gamma^mu  U partial_mu - m ] psi^'(x) $
+
+Here we can define a new set of gamma matrices as: 
+
+$ gamma^mu^' = U^dagger gamma^mu  U $
+
+which gives us the lagrangian in the new basis as: 
+
+$ cal(L) = dash(psi)^'(x) [i gamma^mu^' partial_mu - m ] psi^'(x) $
+
+When the unitary transformation is chosen as: 
+
+$ U = 1/2 mat(1, 0, 1, 0; 
+              0, 1, 0, 1;
+              1, 0, -1, 0;
+              0, 1, 0, -1) $
+
+Then the basis we are working with is called the *Dirac basis* or the *mass basis*, also often written as the standard representation. In this basis, the gamma matrices are given by: 
+
+$ gamma_0^"dirac" = mat(1, 0, 0, 0; 
+                        0, 1, 0, 0;
+                        0, 0, -1, 0;
+                        0, 0, 0, -1) "   "
+
+  gamma_1^"dirac" = mat(0, 0, 0, 1; 
+                        0, 0, 1, 0;
+                        0, -1, 0, 0;
+                        -1, 0, 0, 0) \ 
+
+  gamma_2^"dirac" = mat(0, 0, 0, -i; 
+                        0, 0, i, 0;
+                        0, i, 0, 0;
+                        -i, 0, 0, 0) "   "
+
+  gamma_3^"dirac" = mat(0, 0, 1, 0; 
+                        0, 0, 0, -1;
+                        -1, 0, 0, 0;
+                        0, 1, 0, 0)                         
+$
+
+This is particularly convenient to work with since in the Dirac basis, the gamma matrices can be written as: 
+
+$ gamma^0_"dirac" = mat(I_(2 times 2), 0; 
+                        0, -I_(2 times 2)) "   "
+
+  gamma^i_"dirac" = mat(0, sigma^i; 
+                        -sigma^i, 0) \ 
+
+$
+
+where $sigma^i$ are the Pauli matrices:
+
+$
+sigma^1 = mat(0, 1; 1, 0) "    "
+sigma^2 = mat(0, -i; i, 0) "    "
+sigma^3 = mat(1, 0; 0, -1)
+$
+
+Because of its convenience, *we will be working with the Dirac basis for the rest of this discussion*
+
+]
+
+Going through a similar process, we feed the lagrangian into the Euler-Lagrange equations to get the equation of motion for the spinor field, which is called the *Dirac equation*:
+
+\
+#math-box[$ (i gamma^mu partial_mu - m) psi(x) = 0 $]
+
+ \ \
+Our next step is to understand the solutions to the Dirac equation. 
+
+#theory-box[
+  Before we get into the actual solutions, there is something neat that happens when we play around a little with the Dirac equation. 
+
+  Say we define a new operator defined as $hat(D) = i gamma^mu partial_mu - m $ then the Dirac equation can be written as: 
+
+  $ hat(D) psi(x) = 0 $
+
+  Now, we multiply both sides of the equation by the conjugate operator $hat(D)^dagger = - i gamma^mu partial_mu - m $ to get: 
+
+  $ hat(D)^dagger hat(D) psi(x) = 0 $
+
+  It turns out that on solving this, we end up getting: 
+
+  $ (partial_mu partial^mu + m^2) psi(x) = 0 $
+
+  which is nothing but the Klein-Gordon equation! 
+  
+  #hl[This is a very important result, since it tells us that the solutions to the Dirac equation are also solutions to the Klein-Gordon equation.]
+
+  And because the Klein-Gordon equation is a dispersed wave equation, the solutions to the Dirac equations must also be in the form of plane waves.
+]
+
+We take the ansatz: 
+
+$ psi(x) = psi  e^(-i k_mu x^mu) $
+
+which when we plug into the Dirac equation gives us: 
+
+$ (gamma^mu k_mu - m) psi = 0 $
+
+Substituting the gamma matrices in the Dirac basis, and simplifying, we get: 
+
+$ mat((k_0 - m) I_(2 times 2), - arrow(sigma) dot arrow(k); 
+     arrow(sigma) dot arrow(k), (-k_0 - m) I_(2 times 2)) psi = 0 $
+
+where $arrow(sigma) = (sigma^1, sigma^2, sigma^3)$ is the pauli vector. 
+
+Now we substitute that $ psi = mat(chi ; xi) $ where $chi$ is the left chiral spinor and $xi$ is the right chiral spinor, and we get two equations:
+
+$ (arrow(sigma) dot arrow(k)) xi = (k_0 - m) chi \ 
+(arrow(sigma) dot arrow(k)) chi = (k_0 + m) xi $
+
+$ => chi = (arrow(sigma) dot arrow(k)) / (k_0 - m) xi  \
+=> xi = (arrow(sigma) dot arrow(k)) / (k_0 + m) chi  $
+
+We can further expand $arrow(sigma) dot arrow(k)$ in the Dirac basis to get: 
+
+$ arrow(sigma) dot arrow(k) = mat(k_3, k_1 - i k_2; k_1 + i k_2, -k_3) $
+
+And so our equations then become: 
+
+$ chi = 1/(k_0 - m) mat(k_3, k_1 - i k_2; k_1 + i k_2, -k_3) xi  \
+ xi = 1/(k_0 + m) mat(k_3, k_1 - i k_2; k_1 + i k_2, -k_3) chi  $<chi-xi-solns-eqns>
+
+Both the equations are equivalent, and so for obtaining the basis we just consider the second equation. 
+
+Now we saw before that a general weyl spinor can be written as: 
+
+$ chi = a mat(1; 0) + b mat(0; 1) $
+
+where $a$ and $b$ are complex numbers. Then our right chiral spinor can be written as:
+
+$ xi = 1/(k_0 + m) mat(k_3, k_1 - i k_2; k_1 + i k_2, -k_3) (a mat(1; 0) + b mat(0; 1)) $
+
+Simplifying this, we get: 
+
+$ xi = a/(k_0 + m) mat(k_3 ; k_1 + i k_2 ) +  b/(k_0 + m) mat(k_1 - i k_2 ; -k_3) $
+
+Thus our general solution to the Dirac equation can be written as: 
+
+$ psi(x) = mat(chi ; xi) e^(-i k_mu x^mu) = mat(a; b;  (a k_3 + b(k_1 - i k_2))/(k_0 + m) ; (a (k_1 + i k_2) - b k_3)/(k_0 + m)) e^(-i k_mu x^mu) $
+
+Instead of writing it as one big matrix, we can split it and write it as: 
+
+$ psi(x) = a mat(1; 0; k_3/(k_0 + m); (k_1 + i k_2)/(k_0 + m)) e^(-i k_mu x^mu) + b mat(0; 1; (k_1 - i k_2)/(k_0 + m); -k_3/(k_0 + m)) e^(-i k_mu x^mu) $
+
+Here we make a small change in the variables, $a -> c_1$ and $b -> c_2$ and we define the following two spinors: 
+
+$ u_1(k^mu) = mat(1; 0; k_3/(k_0 + m); (k_1 + i k_2)/(k_0 + m)) "   "
+u_2(k^mu) = mat(0; 1; (k_1 - i k_2)/(k_0 + m); -k_3/(k_0 + m)) $
+
+Then the general solution to the Dirac equation can be written as: 
+
+$ psi(x) = c_1 u_1(k^mu) e^(-i k_mu x^mu) + c_2 u_2(k^mu) e^(-i k_mu x^mu) = sum_(r=1)^2 c_r u_r (k^mu) e^(-i k_mu x^mu) $
+
+
+Additionally, we can consider the general plane wave solution to be of the form: 
+
+$ psi(x) = psi e^(i k_mu x^mu) $ 
+
+(here the phase is positive instead of negative) and we can go through the same process to get the general solution as:
+
+$ psi(x) = d_1 mat(k_3/(k_0 + m); (k_1 + i k_2)/(k_0 + m); 1; 0) e^(i k_mu x^mu) + d_2 mat((k_1 - i k_2)/(k_0 + m); -k_3/(k_0 + m); 0; 1) e^(i k_mu x^mu) $
+
+where we write the two spinors: 
+
+$ v_1(k^mu) = mat(k_3/(k_0 + m); (k_1 + i k_2)/(k_0 + m); 1; 0) "   "
+v_2(k^mu) = mat((k_1 - i k_2)/(k_0 + m); -k_3/(k_0 + m); 0; 1) $
+
+and our general solution can be written as:
+
+$ psi(x) = d_1 v_1(k^mu) e^(i k_mu x^mu) + d_2 v_2(k^mu) e^(i k_mu x^mu) = sum_(r=1)^2 d_r v_r (k^mu) e^(i k_mu x^mu) $
+
+So our true general solution is a combination of both the positive and negative phase solutions, which can be written as: 
+
+$ psi(x) = sum_(r=1)^2 c_r u_r (k^mu) e^(-i k_mu x^mu) + d_r v_r (k^mu) e^(i k_mu x^mu) $
+
+We convert this into an integral over all possible momenta, and we get the final form of the general solution to the Dirac equation: 
+
+#math-box[$ psi(x) = integral difp(k) 1/sqrt(2 omega_k) sum_(r=1)^2 [c_r (arrow(k)) u_r (k^mu) e^(-i k_mu x^mu) + d_r (arrow(k)) v_r (k^mu) e^(i k_mu x^mu)] $]
+
+Next we look at how a left chiral spinor oscillates into a right chiral spinor and vice versa. 
+
+#theory-box(title:"Chiral Oscillations")[
+ 
+  Consider a particle who is at rest (or we are in the rest frame of the particle). Then the basis spinors in the dirac basis are given by: 
+
+$ u_1(k^mu) = mat(1; 0; 0; 0) "   " u_2(k^mu) = mat(0; 1; 0; 0) "   " v_1(k^mu) = mat(0; 0; 1; 0) "   " v_2(k^mu) = mat(0; 0; 0; 1) $ 
+
+We can convert these into the Weyl basis using the unitary transformation $U$ defined before, and we get: 
+
+$ u_1(k^mu) = 1/2 mat(1; 0; 1; 0) "  " u_2(k^mu) = 1/2 mat(0; 1; 0; 1) "  " v_1(k^mu) = 1/2 mat(1; 0; -1; 0) "  " v_2(k^mu) = 1/2 mat(0; 1; 0; -1) $
+
+Now consider a left chiral spinor having spin-up at time $t = 0$, which can be written as: 
+
+$ psi(0) = mat(1; 0; 0; 0) = 1/2 mat(1; 0; 1; 0) + 1/2 mat(1; 0; -1; 0) = 1/2 u_1(k^mu) + 1/2 v_1(k^mu) $
+
+Then the time evolution of this spinor is given by: 
+
+$ psi(t) = 1/2 u_1(k^mu) e^(-i m t) + 1/2 v_1(k^mu) e^(i m t) = 1/2 mat(1; 0; 1; 0) e^(-i m t) + 1/2 mat(1; 0; -1; 0) e^(i m t) \ = mat(cos(m t); 0; -i sin(m t); 0) $
+
+Which implies, at time $t = pi/(2 m)$, the spinor becomes: 
+
+$ psi(pi/(2 m)) = mat(0; 0; -i; 0) = -i mat(0; 0; 1; 0) $
+
+which is a right chiral spinor with spin-up. 
+
+#hl[This shows that a left chiral up spinor oscillated into a right chiral up spinor]. Given enough time, at $t = pi slash m$ the spinor oscillates back into a left chiral up spinor, and this oscillation continues indefinitely.
+
+At times in between, the spinor is a superposition of left and right chiral spinors. The amount of time it takes for these oscillations depends on the mass $m$ of the spinor. So a massless spinor would never oscillate while something with a large mass would oscillate very quickly. 
+
+This can also be understood via the interactions of the particle with the Higgs field, which is responsible for giving mass to particles. Every time a particle interacts with the Higgs field, it oscillates between left and right chiral spinors, and the heavier the particle is, the more it interacts with the Higgs field, and hence the faster it oscillates. 
+
+#figure(image("images/left-right-oscillations-light.png", width: 70%), caption: [Oscillations from left to right chiral spinors when interacting with the Higgs field])<left-right-oscillations-light.png>
+
+]
+
+\ \
+
+=== Free Gauge Fields
+
+Now, as established from the chapter on gauge fields, we treat the connections (which provide us information on how the "zero-point" or the base coordinate system changes between two neighbouring points) as its own field, which is the *gauge field*. 
+
+Now as we establish the gauge field to be its own thing, we can describe its own dynamics using a lagrangian, which is given by: 
+
+$ cal(L) = -1/2 F_(mu nu) F^(mu nu) + m^2 A_mu A^mu \ 
+= -1/2 (partial^mu A^nu partial_mu A_nu - partial^mu A^nu partial_nu A_mu) + m^2 A_mu A^mu $
+
+where $F_(mu nu) = partial_mu A_nu - partial_nu A_mu$ is the field strength tensor, and $A_mu$ is the gauge field.
+
+#theory-box[Do not worry about what the physical meaning of the gauge field is, we will get to that soon. For now just treat the field as a mathematical object that has its own dynamics, and we will see later how it relates to the physical world. And at this point you don't need to think about how the gauge field is related to the connections, we will get to that later as well.]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pagebreak()
+= Relation between the Gauge Field and electromagnetism
+
+Consider the dirac lagrangian for a free spinor field, which describes the dynamics of particles like electrons: 
+
+$ cal(L) = dash(psi)(x) [i gamma^mu partial_mu - m ] psi(x) $
+
+Now, we see if $psi(x)$ has global phase symmetry, that is if $psi(x) -> e^(i alpha) psi(x)$ then do we observe its effects? (Its called a global phase symmetry because we are introducing a phase shift and the amount of the shift is the same across all points in space-time). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////// Bibiography ///////////////////////
+
+#bibliography("DM_refs.bib")

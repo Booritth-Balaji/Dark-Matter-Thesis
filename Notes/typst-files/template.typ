@@ -131,3 +131,10 @@
   inset: 1em,
   body
 )
+
+// Custom hotkey settings for chevron symbols: 
+
+#let ket = math.chevron.r
+#let bra = math.chevron.l
+
+#let difp(var) = $ (dif^3 var) / (2 pi)^3 $  
