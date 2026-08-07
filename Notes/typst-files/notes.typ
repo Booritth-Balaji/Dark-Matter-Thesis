@@ -1,5 +1,5 @@
 // 1. Import your custom functions from the template file
-#import "template.typ": research-notes, hl, theory-box, math-box, ket, bra, difp
+#import "template.typ": research-notes, hl, theory-box, math-box, ket, bra, difp, hbar, chapter
 
 // 2. Apply the template
 #show: research-notes.with(
@@ -9,9 +9,11 @@
   // supervisor: "Prof. Ranjan Laha"
 )
 
-
+#chapter("Prerequisite Theory")
 
 = Cosmological Background 
+
+
 
 == The isotropic, homogeneous universes and their metrics
 
@@ -467,6 +469,12 @@ $ epsilon_m = epsilon_(m,0) a^(-3) $
 and for radiation/relativistic matter, $w = 1/3$, so its energy density evolves as:
 
 $ epsilon_r = epsilon_(r,0) a^(-4) $
+
+and finally for dark energy, $w = -1$, so its energy density remains constant:
+
+$ epsilon_Lambda = epsilon_(Lambda,0) $
+
+which is consistent with the fact that the energy density of the vacuum does not change with time.
 
 
 #theory-box(title: "Why Radiation Has a Different Evolution")[
@@ -993,6 +1001,10 @@ Which implies that for every single neutron or proton in the universe, there are
 The reason why this ratio is constant in time is because the number density of both baryons and photons scale with the scale factor of the universe in the same way, i.e. $n_b prop a(t)^(-3)$ and $n_gamma prop a(t)^(-3)$. Thus, their ratio is constant in time, and the value of this ratio is determined by the conditions in the early universe.
 
 ]
+
+We can plot the variation of $T_"Coulomb"$ and $T_"nuclei"$ with the baryon-to-photon ratio, $eta$, as shown below 
+
+#figure(image("images/nuclei-coulomb-temperature-eta-graph.png", width: 90%), caption: [Variation of ])<nuclei-coulomb-temperature-eta-graph.png>
 
 
 
@@ -2751,7 +2763,134 @@ Now, we see if $psi(x)$ has global phase symmetry, that is if $psi(x) -> e^(i al
 
 
 
+/////////////////////////////// Research Diary /////////////////////////
 
+
+#chapter("Research Diary")
+
+= Recreating the light element abundances from BBN 
+
+The first task in my research work is to recreate the light element abundances from Big Bang Nucleosynthesis (BBN). This would set up the foundation for the rest of my work, since I would be doing BBN calculations later on. 
+
+#theory-box[
+This entire thing was based on the BBN-simple paper @meador-woodruffBBNsimpleHowBake2024 which also has a lot of the derivations. Here I have just provided the minimal amount, and these notes are more for noting down the steps I took to recreate the results in the paper and the things I learnt along the way.
+]
+
+\
+*Conversion between quantities in natural units: *
+
+We will be working with natural units, where $c = hbar = k_B = 1$, for a lot of the remaining calculations. So it is worthwhile to note down the conversion between quantities in natural units and SI units. 
+
+$ "Temperature:  " 1 "K" = 8.619 times 10^(-5) "eV" 
+\ "Mass:  " 1 "kg" = 5.6096 times 10^(35) "eV" = 5.609 times 10^(26) "GeV"
+\ m_p = 1.672 times 10^(-27) "kg" = 0.938 "GeV" 
+\ m_e = 9.109 times 10^(-31) "kg" = 0.511 "MeV"
+\ m_"Planck" = G^(-1 slash 2) = 1.22 times 10^(19) "GeV"
+\ "Time: " 1 "s" = 1.519 times 10^(15) " eV"^(-1)
+ $
+
+
+== Time-Temperature relation in the early universe 
+
+To derive the relationship between time and temperature in the early universe, we start with the previously derived continuity equation (@continuity), which is given by:
+
+
+$ dot(rho) + 3 H (rho + P) = 0 $
+
+where $rho$ is the energy density (but since we are working in natural units, it is also the mass density), $P$ is the pressure, and $H$ is the Hubble parameter. 
+
+Now, we can write: 
+
+$ (dif T)/(dif t) = (dif T)/(dif rho) dot (dif rho)/(dif t) $
+
+into which we can substitute the continuity equation. 
+
+When $T >> 1$ MeV, all the particles in the universe are relativistic, and so we can write $P = rho slash 3$. So as long as we find $rho$ we are good to go. Moreover, we can write the total energy density as: 
+
+$ rho = sum_i rho_i = pi^2/30 g_* T^4 $
+
+where $g_*$ is the effective number of relativistic degrees of freedom, which for our purposes we take to be $ g_* approx 9 $
+
+Substituting and solving for the temperature, we get: 
+
+
+$ (T/"MeV")^2 approx 2.42 dot  g_*^(-1slash 2) (t/"1s")^(-1) $
+
+
+== Photon and Neutrino Temperatures 
+
+We saw before that the neutrinos decouple from the rest of the universe at a temperature of $T approx 1$ MeV. 
+
+Up until that point, i.e. $T >> 1$ MeV, the neutrinos are in thermal equilibrium with the rest of the universe, and so they have the same temperature as the photons. #hl[But as and when the neutrinos decouple (when the temperature starts to drop below $T approx 1$ MeV), the neutrinos are no longer in thermal equilibrium (i.e. they are no longer interacting with the rest of the universe), and so their temperature evolution from then is independent of the photons.] 
+
+Now another important event happens when the temperature drops below 1 MeV, which is the electron-positron annihilation. 
+
+The rest mass of an electron/positron is $m_e = 0.511$ MeV, and so the energy required for a photon to create an electron-positron pair is $E = 2 m_e = 1.022$ MeV. Now when the temperature of the universe is greater than 1 MeV, the photons have enough energy to create electron-positron pairs, and so the photons are in thermal equilibrium with the electrons and positrons, meaning there is no net creation or annihilation of electron-positron pairs (both processes are happening at the same rate). 
+
+But when the temperature drops below 1 MeV, the photons no longer have enough energy to create electron-positron pairs. #hl[And so suddenly there is no more creation of the pairs, just the annihilation of the existing pairs. This leads to a sudden increase in the number of photons, and hence the photon temperature increases.] 
+
+But remember, the neutrinos by this point have already decoupled, so this rise in temperature only shows up in the photons, and not in the neutrinos. 
+
+After some calculations that are detailed in @meador-woodruffBBNsimpleHowBake2024, we get the relationship between the photon and neutrino temperatures as: 
+
+$ (T_gamma)/(T_nu) = (11/4 dot (rho_gamma + P_gamma)/(rho_r + P_r))^(1 slash 3) $
+
+where $rho_r = rho_gamma + rho_(e^-) + rho_(e^+)$ and $P_r = P_gamma + P_(e^-) + P_(e^+)$ 
+
+The above equation has an asymptotic limit of $ (T_gamma)/(T_nu) = (11/4)^(1 slash 3) approx 1.40102 $
+
+But if we were to find the exact evolution of the photon and neutrino temperatures, we would need to solve the equation numerically. 
+
+To do that, we would require the energy density and pressure of the photons and electrons/positrons, as a function of temperature (since we previously derived the relationship between temperature and time, those two can be used interchangable now). The formulae for these relations are taken from @meador-woodruffBBNsimpleHowBake2024 and are provided below: 
+
+
+$ rho_gamma = pi^2/15 T_gamma^4  "     " P_gamma = 1/3 rho_gamma = pi^2/45 T_gamma^4 $
+
+$ rho_(e^-) + rho_(e^+) = 2/pi^2 T_gamma^4 integral_0^infinity (x^2 sqrt(x^2 + y^2))/(exp(sqrt(x^2 + y^2)) + 1) dif x $
+
+$ P_(e^-) + P_(e^+) = 2/(3pi^2) T_gamma^4 integral_0^infinity (x^2 )/(sqrt(x^2 + y^2)[exp(sqrt(x^2 + y^2)) + 1]) dif x $
+
+where $x = p slash T_gamma$ and $y = m_e slash T_gamma$
+
+We need to employ numerical methods to solve the above integrals. Particularly, we will be using the *Gauss-Laguerre quadrature* method to solve the integrals. 
+
+
+#theory-box(title:"Gauss-Laguerre Quadrature")[
+The Gauss-Laguerre quadrature is a numerical integration method that is particularly useful for integrals of the form: 
+
+$ integral_0^infinity f(x) e^(-x) dif x $
+
+in which case, the integral can be approximated as: 
+
+$ integral_0^infinity f(x) e^(-x) dif x approx sum_(i=1)^n w_i f(x_i) $
+
+where $x_i$ are the roots of the Laguerre polynomial $L_n(x)$ and $w_i$ are the corresponding weights, which are given by: 
+
+$ w_i = x_i / ((n + 1)^2 (L_(n+1)(x_i))^2) $
+
+Here, $n$ is the number of points we want to use for the approximation. The larger the value of $n$, the more accurate the approximation will be but it will also take more time to compute.
+
+Further, if we consider a general integral of the form: 
+
+$ integral_0^infinity f(x) dif x $ 
+
+Clearly, this isn't in the form of the Gauss-Laguerre quadrature, but we can convert it into that form by multiplying and dividing by $e^(-x)$, which gives us: 
+
+$ integral_0^infinity f(x) dif x = integral_0^infinity f(x) e^(x) e^(-x)  dif x = integral_0^infinity [f(x) e^(x)] e^(-x) dif x $
+
+Defining the terms in the brackets as $g(x) = f(x) e^(x)$, we can write the integral as: 
+
+$ integral_0^infinity f(x) dif x = integral_0^infinity g(x) e^(-x) dif x $
+
+]
+
+Using the Gauss-Laguerre quadrature, we can approximate the integrals for the energy density and pressure of the electrons/positrons as: 
+
+$ integral_0^infinity (x^2 sqrt(x^2 + y^2))/(exp(sqrt(x^2 + y^2)) + 1) dif x approx sum_(i=1)^n w_i (x_i^2 sqrt(x_i^2 + y^2))/(exp(sqrt(x_i^2 + y^2)) + 1) e^(x_i) $
+
+$ integral_0^infinity (x^2 )/(sqrt(x^2 + y^2)[exp(sqrt(x^2 + y^2)) + 1]) dif x approx sum_(i=1)^n w_i (x_i^2 )/(sqrt(x_i^2 + y^2)[exp(sqrt(x_i^2 + y^2)) + 1]) e^(x_i) $
+
+where the $x_i$ and $w_i$ are the roots and weights of the Laguerre polynomial $L_n(x)$ respectively. Further an exponential factor of $e^(x_i)$ is multiplied to the integrand to account for the $e^(-x)$ factor in the Gauss-Laguerre quadrature.
 
 
 
@@ -2770,5 +2909,5 @@ Now, we see if $psi(x)$ has global phase symmetry, that is if $psi(x) -> e^(i al
 
 
 ///////////////////////////// Bibiography ///////////////////////
-
+#pagebreak()
 #bibliography("DM_refs.bib")

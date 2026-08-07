@@ -2,6 +2,44 @@
 // 1. TEMPLATE DEFINITION (You can later move this to a 'template.typ' file)
 // ============================================================================
 
+
+// Create a custom counter just for these major dividers
+#let chapter-counter = counter("chapter")
+
+// Define the custom chapter function
+#let chapter(title) = {
+  pagebreak(weak: true)
+  chapter-counter.step()
+  
+  // Create a visually distinct title page
+  v(1fr)
+  align(center)[
+    #block(
+      width: 85%,
+      fill: rgb("#f4f7fb"), 
+      stroke: 2pt + rgb("#28649b"), 
+      inset: 3em,
+      radius: 0.5em,
+      [
+        #text(size: 1.5em, fill: rgb("#28649b"), weight: "bold")[
+          SECTION #context chapter-counter.display("A")
+        ]
+        #v(1em)
+        #text(size: 2.5em, weight: "bold", title)
+      ]
+    )
+  ]
+  v(1fr)
+  
+  pagebreak(weak: true)
+  
+  // This is the magic part: Reset your standard '=' heading 
+  // counter so the notes on the next page start at 1 again!
+  counter(heading).update(0)
+}
+
+
+
 #let research-notes(
   title: "Title",
   author: "Author",
@@ -132,9 +170,11 @@
   body
 )
 
-// Custom hotkey settings for chevron symbols: 
+// Custom hotkey settings for chevron symbols and constants: 
 
 #let ket = math.chevron.r
 #let bra = math.chevron.l
 
 #let difp(var) = $ (dif^3 var) / (2 pi)^3 $  
+
+#let hbar = math.planck
