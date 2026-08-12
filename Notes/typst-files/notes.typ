@@ -2848,7 +2848,7 @@ $ rho_gamma = pi^2/15 T_gamma^4  "     " P_gamma = 1/3 rho_gamma = pi^2/45 T_gam
 
 $ rho_(e^-) + rho_(e^+) = 2/pi^2 T_gamma^4 integral_0^infinity (x^2 sqrt(x^2 + y^2))/(exp(sqrt(x^2 + y^2)) + 1) dif x $
 
-$ P_(e^-) + P_(e^+) = 2/(3pi^2) T_gamma^4 integral_0^infinity (x^2 )/(sqrt(x^2 + y^2)[exp(sqrt(x^2 + y^2)) + 1]) dif x $
+$ P_(e^-) + P_(e^+) = 2/(3pi^2) T_gamma^4 integral_0^infinity (x^4 )/(sqrt(x^2 + y^2)[exp(sqrt(x^2 + y^2)) + 1]) dif x $
 
 where $x = p slash T_gamma$ and $y = m_e slash T_gamma$
 
@@ -2893,18 +2893,62 @@ $ integral_0^infinity (x^2 )/(sqrt(x^2 + y^2)[exp(sqrt(x^2 + y^2)) + 1]) dif x a
 where the $x_i$ and $w_i$ are the roots and weights of the Laguerre polynomial $L_n(x)$ respectively. Further an exponential factor of $e^(x_i)$ is multiplied to the integrand to account for the $e^(-x)$ factor in the Gauss-Laguerre quadrature.
 
 
+=== Time evolution of the photon and neutrino temperatures 
+
+Now that we have the expressions for the energy densities and the pressures of all the components involved (and we know how to calculate them numerically), we can now solve the time evolution of the photon and neutrino temperatures. 
+
+#hl[Here on out we take the photon temperature, $T_gamma$, to be the actual temperature of the universe i.e. $ T = T_gamma $ This is because the photons are in thermal equilibrium with the rest of the universe, and so they are a good representation of the temperature of the universe.] 
+
+Now, we need: 
+
+$ (dif T)/(dif t) = (dif T)/(dif rho) (dif rho)/(dif t) $
+
+Using the continuity equation, we can write: 
+
+$ (dif T)/(dif t) = -3 H (rho + P) (dif T)/(dif rho) $
+
+where $rho = rho_gamma + rho_(e^-) + rho_(e^+)$ and $P = P_gamma + P_(e^-) + P_(e^+)$
+
+So to find this, we need to find $dif T slash dif rho$. Now we can write: 
+
+$ (dif rho)/(dif T) = (dif)/(dif T) (rho_gamma + rho_(e^-) + rho_(e^+)) = (dif rho_gamma)/(dif T) + (dif (rho_(e^-) + rho_(e^+)))/(dif T) $
 
 
+We know that, 
+
+$ rho_gamma = pi^2/15 T^4 " " => " " (dif rho_gamma)/(dif T) = 4 pi^2/15 T^3 = 4/(T) rho_gamma $
+
+$ rho_(e^-) + rho_(e^+) = 2/pi^2 integral_0^infinity (E(p) dot p^2)/(exp(E(p) slash T) + 1) dif p $
+
+these formulae were taken from @meador-woodruffBBNsimpleHowBake2024, eqn 15 
 
 
+Further, 
+
+$ dif/(dif T) (rho_(e^-) + rho_(e^+)) = 2/pi^2 integral_0^infinity (E^2(p) dot p^2)/(exp(E(p) slash T) + 1)^2  (exp(E(p) slash T))/(T^2) dif p $
+
+when we apply the change of variables $x = p slash T$ and $y = m_e slash T$, we get: 
+
+$ dif/(dif T) (rho_(e^-) + rho_(e^+)) = 2/pi^2 T^3 integral_0^infinity ((x^2 + y^2) dot x^2)/(exp(sqrt(x^2 + y^2)) + 1)^2  exp(sqrt(x^2 + y^2)) dif x $
+
+which can be solved numerically using the previously discussed Gauss-Laguerre quadrature method. 
+
+Now that we have the expressions constituting $dif rho slash dif T$, we can write the time evolution of the temperature as: 
+
+$ (dif T)/(dif t) = -3 H (rho + P) ((dif rho)/(dif T))^(-1) $ 
 
 
+Further, we also need a relation between the photon and neutrino temperatures, which is given by:
 
+$ (dif T_nu)/(dif T) = (T_nu)/(3 (rho + P)) ((dif rho)/(dif T)) $
 
+#hl[Solving these two equations simultaneously, we can get the time evolution of the photon and neutrino temperatures.] 
 
+#theory-box[NOTE: I need to check how that neutrino temperature derivative formula came about, where did it come from?]
 
+Performing these calculations, we get the following results for the time evolution of the photon and neutrino temperatures: 
 
-
+#figure(image("images/photon-neutrino-temp-time-dep.png", width: 80%), caption: [Evolution of Photon and Neutrino temperatures with time])<photon-neutrino-temp-time-dep.png>
 
 
 
