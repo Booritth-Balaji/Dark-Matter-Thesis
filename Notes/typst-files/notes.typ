@@ -2952,6 +2952,38 @@ Performing these calculations, we get the following results for the time evoluti
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pagebreak()
+
+= Random QnA 
+
+#theory-box(title: "Question 1")[How is the (comoving) entropy of the universe assumed to be constant? Especially when the laws of thermodynamics demand that entropy should increase? ]
+
+I found a good answer to this question in: 
+
+#link("https://physics.stackexchange.com/questions/288145/how-do-i-reconcile-constant-entropy-of-a-comoving-volume-with-low-entropy-initia")
+
+
+
+
+
 ///////////////////////////// Bibiography ///////////////////////
 #pagebreak()
 #bibliography("DM_refs.bib")
