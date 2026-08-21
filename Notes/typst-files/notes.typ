@@ -2951,10 +2951,91 @@ Performing these calculations, we get the following results for the time evoluti
 #figure(image("images/photon-neutrino-temp-time-dep.png", width: 80%), caption: [Evolution of Photon and Neutrino temperatures with time])<photon-neutrino-temp-time-dep.png>
 
 
+=== Evolution of neutrons and protons 
+
+Next, we consider the time (temperature) evolution of then neutrons and protons in the early universe. As we have seen before, initially the neutrons and protons are in thermal equilibrium with each other, i.e. they constantly interconvert into each other via the weak interactions. 
+
+In such a scenario, the ratio of the number density of neutrons to the number density of protons is given by the Maxwell-Boltzmann distribution: 
+
+$ n_n/n_p = exp(-Q/T) $
+
+where $Q = m_n - m_p$ is the mass difference between the neutron and proton.
+
+Further, we can define the "mass fraction" of neutrons and protons as:
+
+$ X_n = n_n/(n_n + n_p) "    " X_p = n_p/(n_n + n_p) $
+
+#theory-box(title: "General Mass Fraction Formula")[In general, for a species "i", we define its mass fraction as: 
+
+$ X_i = A_i n_i/n_b $
+
+where $A_i$ is the mass number of the species, $n_i$ is the number density of the species, and $n_b$ is the total baryon number density.
+
+This definition is useful since it gives us the condition that: 
+
+$ sum_i X_i = 1 $
+
+]
+
+Our goal is to study the time evolution of the mass fractions of neutrons and protons, $X_n$ and $X_p$. 
+
+If our neutrons and protons remained in equilibrium with each other, then we would just have (from the previous relation):
+
+$ X_n = 1/(1 + exp(Q slash T)) "    " X_p = 1/(1 + exp(-Q slash T)) $
 
 
+But that is not the case in our universe. The universe expands and cools down, and the weak interactions that interconvert neutrons and protons freeze out at a temperature of $T approx 0.7$ MeV. After that point, the neutrons and protons are no longer in thermal equilibrium with each other. 
+
+Before we jump into how to calculate the evolution of the mass fractions, we must understand the rate of the weak interactions that interconvert neutrons and protons. The rate at which neutrons covert into protons is given by: 
+
+$ lambda_(n -> p) = K integral_1^infinity d x (x (x - q)^2 sqrt(x^2 - 1))/((1 + e^(-x z)) (1 + e^((x - q) z_nu + xi_e))) + K integral_1^infinity d x (x (x + q)^2 sqrt(x^2 - 1))/((1 + e^(x z)) (1 + e^(-(x + q) z_nu + xi_e))) $
+
+where $q = Q slash m_e$, $z = m_e slash T$, $z_nu = m_e slash T_nu$, and $xi_e$ is the electron neutrino chemical potential (which is zero in our case). 
+
+Similarly, the rate at which protons convert into neutrons is given by:
+
+$ lambda_(p -> n) = lambda_(n -> p) (-q, -xi_e) $
+
+That leaves us with $K$, which is essentially a normalization constant that we must define. We do this by considering the asymptotic limit at $t -> infinity$, which would lead to $T -> 0$. In this limit, there would be no nuclear reactions and the only thing that would be happening is the decay of neutrons into protons. So we can write: 
+
+$ lambda_(n -> p) (T->0) = 1/tau_n $
+
+When applying the $T -> 0$ limit to the expression for $lambda_(n -> p)$, we get: 
+
+$ lambda_(n -> p) (T->0) = K integral_1^infinity d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^((x - q) z_nu + xi_e)) + K integral_1^infinity d x (x (x + q)^2 sqrt(x^2 - 1))/(1 + e^(x z)) $
+
+Now, the denominator of the second term goes to infinity (as $z_nu -> infinity$) and so the first term goes to zero, which gives leaves us with
 
 
+$ lambda_(n -> p) (T->0) = K integral_1^infinity d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^((x - q) z_nu + xi_e)) $
+
+Now we can split this integral into two parts, one from $1$ to $q$ and the other from $q$ to $infinity$. 
+
+$ lambda_(n -> p) (T->0) = K integral_1^q d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^(-(q - x) z_nu + xi_e)) + K integral_q^infinity d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^((x - q) z_nu + xi_e)) $
+
+Now, $x - q > 0$ for $x > q$, which means the denominator of the second integral goes to infinity (as $z_nu -> infinity$) and so the second integral goes to zero. Which finally gives us, 
+
+$ lambda_(n -> p) (T->0) = K integral_1^q d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^(-(q - x) z_nu + xi_e)) $
+
+Equating it to $1/tau_n$, we can solve for $K$ as: 
+
+$ K = (tau_n dot integral_1^q d x (x (x - q)^2 sqrt(x^2 - 1))/(1 + e^(-(q - x) z_nu + xi_e)))^(-1) $
+
+Solving the integral, we can get our normalization constant $K$.
+
+Now that we have the rates of the weak interactions, we can write the time evolution of the mass fractions as (THE FORMULA FOR THIS IN THE @meador-woodruffBBNsimpleHowBake2024 PAPER IS WRONG): 
+
+$ (dif X_n)/(dif t) = lambda_(p -> n) X_p - lambda_(n -> p) X_n $
+$ (dif X_p)/(dif t) = lambda_(n -> p) X_n - lambda_(p -> n) X_p $
+
+The initial conditions for these equations are given by the thermal equilibrium conditions, which are:
+
+$ (X_n)_"initial" = 1/(1 + exp(Q slash T_"initial")) "    " (X_p)_"initial" = 1/(1 + exp(-Q slash T_"initial")) $
+
+
+The time evolution is plotted below: 
+
+#figure(image("images/n-p-abundance-evolution.png", width: 80%))<n-p-abundance-evolution.png>
 
 
 
