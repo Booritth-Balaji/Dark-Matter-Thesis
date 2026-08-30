@@ -3038,11 +3038,153 @@ The time evolution is plotted below:
 #figure(image("images/n-p-abundance-evolution.png", width: 80%))<n-p-abundance-evolution.png>
 
 
+=== Abundance evolution of light elements 
+
+After the toy model we considered before, we now move onto calculating the time evolution of the abundances of the light elements, which is the main goal of this section. 
+
+For two species, $i$ and $j$, that interact with each other to undergo a nuclear reaction, we can write the reaction rate (per unit volume) as: 
+
+$ Gamma_(i j) = N_i N_j bra sigma v ket_(i j) $
+
+where $N_i$ and $N_j$ are the number densities of the two species, and $bra sigma v ket_(i j)$ is the thermally averaged cross-section of the reaction multiplied with the relative velocity (often called the *reaction rate per particle*). 
+
+Given this, consider a reaction of the form: $i + j <-> k + l$ 
+
+Then the time evolution of the number density of species $i$ can be written as:
+
+$ (dif N_i)/(dif t) = - Gamma_(i j) + Gamma_(k l) = N_k N_l bra sigma v ket_(k l -> i j) - N_i N_j bra sigma v ket_(i j -> k l)  $
+
+where the first term is the rate at which species $i$ is being destroyed (by interacting with species $j$) and the second term is the rate at which species $i$ is being created (by the interaction of species $k$ and $l$).
+
+\
+#theory-box(title: "Reaction Rate Formula")[
+
+To understand where the reaction rate formula comes from, let's first consider a simpler case. 
+
+Suppose we just have two kinds of particles, $i$ and $j$, that are going to interact with each other, and we want to find the rate at which they interact. In our volume, we have $n_i$ particles of type $i$ and $n_j$ particles of type $j$. 
+
+The interactions between the two particles do not depend on their specific velocities, but rather on the relative velocity between the two particles. So without loss of generality, we can consider particle $j$ to be at rest, and particle $i$ to be moving with a velocity $v$.
+
+We introduce a quantity called the *cross-section*, which is a geometrical area that represents the probability of interaction between two particles. The larger the cross-section, the more likely the two particles are to interact. 
+
+We can imagine the cross-section as a circle around particle $j$, and if particle $i$ enters this circle, it will interact with particle $j$. So the total area available for interaction is given by the cross-section $sigma$ multiplied by the number of particles of type $j$, which is $A = n_j sigma$.  
+
+Given a time interval $dif t$, particle $i$ will travel a distance of $v dif t$. So the number of interactions that will essentially be the number of particles of type $i$ that will enter the area $A$ in the time interval $dif t$, which is given by:
+
+$ N_("interactions") = n_i dot A dot v dif t = n_i n_j sigma v dif t $
+
+Thus, the rate of interactions (per unit time) is given by: 
+
+$ Gamma_(i j) = (N_("interactions"))/(dif t) = n_i n_j sigma v $
+
+Now, we if we consider number densities instead of the total number of particles, we can write: 
+
+$ Gamma_(i j) = N_i N_j sigma v $
+
+where $N_i$ and $N_j$ are the number densities of the two species.
+
+]
+
+The question then becomes, how do we calculate $bra sigma v ket_(i j)$. For this, we need to consider the distribution of the velocities of the particles. In the early universe, the particles are in thermal equilibrium, and so their velocities follow a Maxwell-Boltzmann distribution, $f(v)$, such that $f(v) dif v$ gives the probability of finding a particle with a velocity between $v$ and $v + dif v$.
+
+$ f(v) = 4 pi v^2 (m/(2 pi k T))^(3 slash 2) exp(-(m v^2)/(2 k T)) $
+
+$ integral_0^infinity f(v) dif v = 1 $
+
+So the thermally averaged cross-section is given by: 
+
+$ bra sigma v ket = integral_0^infinity f(v) dot sigma (v) dot v dif v $
+
+Following some change of variables and simplifications from chapter 3.5 of @rolfsCauldronsCosmosNuclear1997, we can write the thermally averaged cross-section as: 
+
+#math-box[$ bra sigma v ket_(i j) = sqrt(8/(pi mu k^3 T^3)) integral_0^infinity sigma(E) dot E dot exp(-E/(k T)) dif E $]
+
+where $mu = m_i m_j slash (m_i + m_j)$ is the reduced mass of the two species, and $E = 1/2 mu v^2$ is the kinetic energy of the two particles in the center of mass frame.
 
 
+Now that that is out of the way, we can write the time evolution of then number density of species $i$, undergoing the reaction $i + j <-> k + l$, as: 
+
+$ (dif N_i)/(dif t) = N_k N_l bra sigma v ket_(k l -> i j) - N_i N_j bra sigma v ket_(i j -> k l)  $
+
+But the above is only true when $i$ and $j$ are different species. If they are the same species, then we need to include a factor of $1/2$ in their reaction rate, since we are double counting the interactions. So we can write the general formula as:
+
+$ (dif N_i)/(dif t) = N_k N_l bra sigma v ket_(k l -> i j) - (N_i N_j)/(1 + delta_(i j))  bra sigma v ket_(i j -> k l)  $
+
+where $delta_(i j)$ is the Kronecker delta, which is $1$ if $i = j$ and $0$ otherwise. The similar formulae can be written for the other species $k$, and $l$ as well. So the general formula for a reaction of the form: 
+
+$ i + j <-> k + l $ is given by:
+
+#math-box[
+$ (dif N_i)/(dif t) = (N_k N_l)/(1 + delta_(k l)) bra sigma v ket_(k l -> i j) - (N_i N_j)/(1 + delta_(i j))  bra sigma v ket_(i j -> k l)  $
+]
+
+If one of the products of the reaction is a photon, then we can write the reaction as:
+
+$ i + j <-> k + gamma $
+
+and the time evolution of the number density of species $i$ can be written as:
+
+$ (dif N_i)/(dif t) = N_k bra sigma v ket_(k gamma -> i j) - (N_i N_j)/(1 + delta_(i j))  bra sigma v ket_(i j -> k gamma)  $
+
+Next up, we introduce the concept of the *number abundance* of a species, which is defined as:
+
+$ Y_i = N_i/N_b $
+
+where $N_b$ is the total baryon number density. This ties in neatly with the mass fraction we defined before, since we can write: 
+
+$ X_i = A_i Y_i $
+
+where $A_i$ is the mass number of the species.
+
+#theory-box(title:"The re-defined Avagadro number")[
+  Further, we can write the abundance as: 
+
+  $ Y_i = N_i / N_b = N_i/(rho_b slash m_N)  = N_i/(rho_b N_A) N_A m_N  $
+
+  where $N_A = 6.022 times 10^(23) " mol"^(-1)$ is the Avogadro's number, and $m_N = 1.66 times 10^(-24) " g"$ is the average mass of a nucleon.
+
+  It turns out that $N_A m_N approx 1$ g/mol. So in actual calculations, we end up writing the above formula as: 
+
+  $ Y_i = N_i/(rho_b slash m_N)  = N_i/(rho_b N^*_A) $
+
+  where $N^*_A = 6.022 times 10^(23) " g"^(-1)$ is the re-defined Avagadro's number, which is the number of nucleons in 1 gram of matter. This would also equivalently give us the definition: 
+
+  $ N^*_A = 1 slash m_N $
+
+  where $m_N$ is the average mass of a nucleon in grams. 
+
+  (In classic books, there is no distinction between $N_A$ and $N^*_A$, both going by the name of Avogadro's number. But I found this confusing and would rather have a "re-defined" avagadro number instead of confusing it with the definition of an avagadro number in the first place. It does not make a difference in the calculations, but it is just a matter of clarity.)
+
+  #hl[For more information on this, look at @reichertReactionNetwork]
+
+]
+
+Thus, we can substitute $ N_i = Y_i rho_b N^*_A $ into the time evolution equation, and we get:
+
+#math-box[
+$ (dif Y_i)/(dif t) = (Y_k Y_l)/(1 + delta_(k l)) rho_b N^*_A bra sigma v ket_(k l -> i j) - (Y_i Y_j)/(1 + delta_(i j)) rho_b N^*_A  bra sigma v ket_(i j -> k l) $
+]
+
+Now, the cross section must be calculated experimentally, but there is a small trick that would allow use to go from the formard reaction rate to the backward reaction rate. Their relationship is as described below: 
+
+$  (bra sigma v ket_(k l -> i j))/(bra sigma v ket_(i j -> k l)) = (g_i g_j)/(g_k g_l) dot (1 + delta_(k l))/(1 + delta_(i j)) dot ((A_i A_j)/(A_k A_l))^(3 slash 2) exp(-Q/(k_B T)) $
+
+where $g_i$ is the number of spin states of species $i$, given by $g_i = 2 s_i + 1$ where $s_i$ is the spin of species $i$, and $Q$ is the Q-value of the reaction, given by: 
+
+$ Q = (m_i + m_j - m_k - m_l) c^2 $
+
+where $Q > 0$ is essentially the energy released during the reaction. 
+
+For a system of reactions, the final rate equation is written as just the sum of all the individual reaction rates. For example, if we have a system: 
+
+$ p <-> n \ p + n <-> D + gamma $
+
+Then the rate of change of proton abundance is governed by the equations: 
+
+$ (dif Y_p)/(dif t) = [ - Y_p rho_b N^*_A bra sigma v ket_(p-> n) + Y_n rho_b N^*_A bra sigma v ket_(n -> p) ] + \ [- Y_p Y_n rho_b N^*_A bra sigma v ket_(p n -> D gamma) + Y_D rho_b N^*_A bra sigma v ket_(D gamma -> n p) ] $
 
 
-
+where the first square bracket term comes from the first reaction and the second term comes from the second reaction. 
 
 
 
@@ -3060,6 +3202,15 @@ The time evolution is plotted below:
 I found a good answer to this question in: 
 
 #link("https://physics.stackexchange.com/questions/288145/how-do-i-reconcile-constant-entropy-of-a-comoving-volume-with-low-entropy-initia")
+
+#theory-box(title: "Question 2 (UNANSWERED)")[
+  If we are changing the weak scale, the masses of the quarks would change, changing the masses of the nucleons and the binding energies of the nuclei. So would that not change the cross section of the reaction? 
+]
+
+The naive intiution here was that if the binding energy of the nuclei becomes larger(smaller), then the nucleaons would have a smaller(larger) cross section, because they would be more tightly bound together. 
+
+Need to look more deeper into how this is actually calculated and affected. 
+
 
 
 
