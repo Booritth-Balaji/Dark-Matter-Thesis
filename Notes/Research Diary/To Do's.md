@@ -17,6 +17,11 @@ The plan:
     [ ] Check the BBN synthesis just using that. Then implement the -11.605 factor into the exponential. 
 
 
+Possible reasons for difference: 
+
+- using A instead of the actual masses for Y calculations? 
+
+
 
 
 
