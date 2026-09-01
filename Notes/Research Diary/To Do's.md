@@ -11,10 +11,11 @@ The plan:
     [ ] Once that is verified, implement constants from scipy (for calculating rho_b)
         - Ideally this would not make that much of a difference. 
 
-2. Start worrying about backward rates 
-    [ ] Figure out what this conversion factor from this mysterious equation 42 is and where is it coming from? 
-    [ ] Just use the reverse reaction rates from REACLIB itself? 
-        [ ] Check what is that correction thing that they were talking about in that though. 
+2. Backward Rates 
+    [x] Figure out what this conversion factor from this mysterious equation 42 is and where is it coming from? 
+        - Fowler et al. (1967): Thermonuclear Reaction Rates
+    [ ] Check the BBN synthesis just using that. Then implement the -11.605 factor into the exponential. 
+
 
 
 
