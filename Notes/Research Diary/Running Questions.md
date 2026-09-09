@@ -38,3 +38,23 @@
 
 3. HIS CODE IS WRONG. Albeit I dont think it would change much, but he was using T9i instead of Ti while calculating NSE. 
     
+
+--- 
+
+M Date: 8/9/26
+
+1. Questions from the paper, all the red highlighted stuff. 
+
+2. Do I need to focus on sections 4/5/6 
+
+    - section 5 has the part with the WIMP - disk fragmentation analysis. 
+
+3. I now have a better idea of what's going on in the paper and can sort of see a better vision as to where the project can go. An explanation to what is our final goal would help: 
+
+    - what property of WIMPs are we thinking of constraining by doing our analysis? 
+
+    - what connection would it have with the "WIMP miracle" (which essentially states that WIMP was predicted by SUSY considerations)
+
+    - How is it going to be different from the analysis Hall et al. did? They considered disk fragmentation to put up a wall to prevent runaway. 
+
+4. PhD applications start. Need to get a clearer idea about the project to update my CV. Ask him honestly if he would be able to give an LoR with the amount of experience I have had working with him. If not now, then what about in nov/dec time, would that have been enough time? 

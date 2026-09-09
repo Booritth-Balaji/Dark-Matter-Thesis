@@ -3167,13 +3167,27 @@ $ (dif Y_i)/(dif t) = (Y_k Y_l)/(1 + delta_(k l)) rho_b N^*_A bra sigma v ket_(k
 
 Now, the cross section must be calculated experimentally, but there is a small trick that would allow use to go from the formard reaction rate to the backward reaction rate. Their relationship is as described below: 
 
-$  (bra sigma v ket_(k l -> i j))/(bra sigma v ket_(i j -> k l)) = (g_i g_j)/(g_k g_l) dot (1 + delta_(k l))/(1 + delta_(i j)) dot ((A_i A_j)/(A_k A_l))^(3 slash 2) exp(-Q/(k_B T)) $
+$  (bra sigma v ket_(k l -> i j))/(bra sigma v ket_(i j -> k l)) = (g_i g_j)/(g_k g_l) dot (1 + delta_(k l))/(1 + delta_(i j)) dot ((A_i A_j)/(A_k A_l))^(3 slash 2) exp(-Q/(k_B T)) $<back-rxn-reln>
 
 where $g_i$ is the number of spin states of species $i$, given by $g_i = 2 s_i + 1$ where $s_i$ is the spin of species $i$, and $Q$ is the Q-value of the reaction, given by: 
 
 $ Q = (m_i + m_j - m_k - m_l) c^2 $
 
-where $Q > 0$ is essentially the energy released during the reaction. 
+where $Q > 0$ is essentially the energy released during the reaction.
+
+For reactions involving a production of a photon ($i + j -> k + gamma$), the relationship between the forward and backward reaction rates is given by Eqn 16 in @fowlerThermonuclearReactionRates1967 : 
+
+$  (bra sigma v ket_(k gamma -> i j))/(bra sigma v ket_(i j -> k gamma)) = 0.98677 times 10^(10) dot (g_i g_j)/(g_k (1 + delta_(i j))) dot ((A_i A_j)/(A_k))^(3 slash 2) dot (rho_b^(-1) T_9^(3 slash 2)) dot exp(-Q/(k_B T)) $<back-gamma-rxn-reln>
+
+where $T_9 = T slash 10^9 K$ is the temperature in units of $10^9$ K. 
+
+#theory-box[Note that in the paper, they actually have a factor of 11.605 in the exponential. This is because they converted Q into MeV and T into $10^9$ K, which gives a factor of $1 slash (k_B T) = 11.605$. But since in the code (and here) we mostly work with natural units, we don't need to convert the units.]
+
+The $rho_b$ in the above equation is the baryon mass density, which is given by Eqns D.1 and D.5 in @kawanoLetsGoEarly1992: 
+
+$ rho_b approx h dot T_9^3 "  where  " h = M_u n_gamma/T_9^3 eta = 3.3683 times 10^4 eta $
+
+where $M_u$ is the atomic mass unit, $n_gamma$ is the photon number density, and $eta$ is the baryon-to-photon ratio.
 
 For a system of reactions, the final rate equation is written as just the sum of all the individual reaction rates. For example, if we have a system: 
 
@@ -3185,6 +3199,28 @@ $ (dif Y_p)/(dif t) = [ - Y_p rho_b N^*_A bra sigma v ket_(p-> n) + Y_n rho_b N^
 
 
 where the first square bracket term comes from the first reaction and the second term comes from the second reaction. 
+
+The final piece of the puzzle is to find the initial conditions for the abundances. The initial conditions are given by the NSE equilibrium conditions, are are described by the Eqn 4.7 in @kolbEarlyUniverse: 
+
+$ X_A = g_A dot [zeta(3)^(A-1) dot pi^((1-A) slash 2) dot 2^((3A - 5) slash 2)] A^(5 slash 2) (T slash m_N)^(3(A-1) slash 2) \ times eta^(A-1) X_p^(Z) X_n^(A-Z) exp(B_A slash T) $
+
+where $g_A = 1.26$ is the axial vector correction for weak charge nucleon rxns between p and n, $zeta$ is the Riemann zeta function, $A$ is the mass number of the species, $Z$ is the atomic number of the species, $B_A$ is the binding energy of the species, and $X_p$ and $X_n$ are the mass fractions of protons and neutrons respectively. 
+
+
+#theory-box[We use $X_p = X_n = 0.5$ for our calculations in the code since it is extremely close to 0.5 at the time of nucleosynthesis, and so it is a good approximation to use.]
+
+#theory-box(title: "Reaction Rates")[
+  For our analaysis, we obtained the reaction rates from the JINA REACLIB database at: https://reaclib.jinaweb.org/popularRates.php 
+
+  The rates provided here are already in the form of $N_A bra sigma v ket$, and so we can directly use them in our calculations. 
+
+  #hl[We only used the forward rates from the database, and used the relations described above to calculate the backward rates] (@back-rxn-reln and @back-gamma-rxn-reln).
+  
+]
+
+
+
+
 
 
 
