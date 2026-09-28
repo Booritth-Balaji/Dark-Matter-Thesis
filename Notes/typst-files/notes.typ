@@ -1,5 +1,5 @@
 // 1. Import your custom functions from the template file
-#import "template.typ": research-notes, hl, theory-box, math-box, ket, bra, difp, hbar, chapter
+#import "template.typ": research-notes, hl, theory-box, math-box, ket, bra, difp, hbar, pm, chapter
 
 // 2. Apply the template
 #show: research-notes.with(
@@ -3219,10 +3219,88 @@ where $g_A = 1.26$ is the axial vector correction for weak charge nucleon rxns b
 ]
 
 
+#pagebreak()
+
+= The weak scale and BBN 
+
+My next step was to recreate the graphs from @hallWeakScaleBBN2014 which deals with the effect of changing the weak scale on BBN. 
 
 
 
+#theory-box(title: "Weak Scale")[
+  So what is the weak scale and why does it matter to us? 
 
+  The weak scale, also known as the electroweak scale or the Higgs vacuum expectation value (VEV), relates to the masses of the W and Z bosons as well as the masses of the fermions (quarks and leptons) in the Standard Model. The relationship between the weak scale and the masses is mediated by the *yukawa couplings*, which are dimensionless parameters that determine the strength of the interaction between the Higgs field and the fermions.
+
+  In general, the relationship is given by:  
+
+  $ m = y v $
+
+  where $m$ is the mass of the particle, $y$ is the yukawa coupling, and $v$ is the weak scale (or Higgs VEV).
+
+]
+
+== Nuclear Stability Boundaries 
+
+Before jumping into the BBN effects, we would first like to set some boundaries based on nuclear stability. 
+
+The idea here is that when we vary the weak scale, we are essentially changing the masses of the quarks, which in turn changes the masses of the nucleons and the binding energies of the nuclei. This can lead to some nuclei becoming unstable, which would have a significant effect on BBN. 
+
+We will be particularly looking at two different stability conditions that must be satisfied for a well populated universe: 
+
+1. *Hydrogen stability*:  
+
+  The hydrogen atom is the simplest and most abundant atom in the universe. If hydrogen were to become unstable, it would have a significant effect on the universe as we know it. 
+
+  The stability of hydrogen is determined by the masses of the neutron, proton and electron. The condition for hydrogen stability is given by: 
+
+  $ m_n > m_p + m_e => m_n - m_p > m_e $
+
+  #hl[If the neutron-proton mass difference were to become smaller than the electron mass, then the hydrogen atom would become unstable]. This is because if the neutron were to become lighter than the proton and electron combined, then the proton and the electron would spontaneously combine to form a neutron, which would lead to the decay of hydrogen. 
+ 
+\
+2. *Complex nuclei stability*:  
+
+  Beyond hydrogen, we also need to consider the stability of more complex nuclei for a well populated universe closely resembling our own. 
+
+  The stability condition for complex nuclei is given by:
+
+  $ |B slash A| > m_n - m_p - m_e $
+
+  where $B slash A$ is the binding energy per nucleon of the nucleus. #hl[If the above inequality was not satisfied, then the neutrons bound in the nucleus would decay, making the nucleus unstable.]
+
+#math-box[
+In this part of the analysis, instead of changing the weak scale directly, we instead change the masses of the quarks/leptons (keeping the yukawa couplings constant) as a proxy for changing the weak scale. Additionally, we only vary the masses of the up and down quarks (and the electron), since they are the most relevant for the scnenario we are considering.
+]
+
+All our stability conditions depend on the neutron-proton mass difference, which can be calculated as a function of the quark masses using the formula from @hallWeakScaleBBN2014: 
+
+$ m_n - m_p approx delta_"iso" ((m_d - m_u))/((m^0_d - m^0_u)) + delta_"EM" $
+
+where $delta_"iso" = 2.39 pm 0.21 "MeV"$ is the isospin breaking contribution to the neutron-proton mass difference, $delta_"EM" approx -1.096 "MeV"$ is the electromagnetic contribution which is calculated from calibrating the formula to the observed neutron-proton mass difference, and $m^0_d$ and $m^0_u$ are the observed masses of the down and up quarks respectively.
+
+Just this much would be enough to calculate the hydrogen stability boundary, but for the complex nuclei stability boundary, we also need to know the binding energy per nucleon of the nucleus will vary with the quark masses. 
+
+Before we find the $B slash A$, we first need to find the pion masses as a function of the quark masses, which is given by the Gell-Mann-Oakes-Renner relation (taken from @damourConstraintsVariabilityQuark2008a):
+
+$ m_pi^2 = B_0 (m_u + m_d) $
+
+where $B_0$ is a constant, proportional to $Lambda_"QCD"^((0))$
+
+Why do we need this? Because the $B slash A$ is described as a function of the pion mass in @damourConstraintsVariabilityQuark2008a, which is shown here: 
+
+#figure(image("images/B-A-pion-mass-dep.png", width: 70%), caption: [Binding Energy per nucleon as a function of the pion mass for the $O^16$ atom. Figure taken from @damourConstraintsVariabilityQuark2008a])<B-A-pion-mass-dep.png>
+
+#theory-box[
+  Technically, since the $B slash A$ is a function of the ratio of the squares of the pion mass to the observed pion mass (represented as $m_pi^2 slash m^2_"phys"$), we can write the binding energy per nucleon as a function of the quark masses as:
+
+  $ B slash A = f((m_pi^2)/(m^2_"phys")) = f((m_u + m_d)/(m^0_u + m^0_d)) $
+
+  So we don't really need to calculate the pion mass as a function of the quark masses (and don't need to worry about the constant $B_0$), since we can just use the ratio of the quark masses to get the ratio of the pion masses.
+
+]
+
+Now that we have all the ingredients, we can start varying $(m_u, m_d, m_e)$ and see how the stability boundaries change in each scenario. 
 
 
 

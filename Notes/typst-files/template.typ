@@ -178,3 +178,5 @@
 #let difp(var) = $ (dif^3 var) / (2 pi)^3 $  
 
 #let hbar = math.planck
+
+#let pm = math.plus.minus
