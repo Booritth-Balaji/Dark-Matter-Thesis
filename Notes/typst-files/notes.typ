@@ -3289,6 +3289,7 @@ where $B_0$ is a constant, proportional to $Lambda_"QCD"^((0))$
 
 Why do we need this? Because the $B slash A$ is described as a function of the pion mass in @damourConstraintsVariabilityQuark2008a, which is shown here: 
 
+
 #figure(image("images/B-A-pion-mass-dep.png", width: 70%), caption: [Binding Energy per nucleon as a function of the pion mass for the $O^16$ atom. Figure taken from @damourConstraintsVariabilityQuark2008a])<B-A-pion-mass-dep.png>
 
 #theory-box[
