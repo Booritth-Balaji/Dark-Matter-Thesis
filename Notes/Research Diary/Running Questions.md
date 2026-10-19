@@ -58,3 +58,12 @@ M Date: 8/9/26
     - How is it going to be different from the analysis Hall et al. did? They considered disk fragmentation to put up a wall to prevent runaway. 
 
 4. PhD applications start. Need to get a clearer idea about the project to update my CV. Ask him honestly if he would be able to give an LoR with the amount of experience I have had working with him. If not now, then what about in nov/dec time, would that have been enough time? 
+
+
+--- 
+
+13/10/2026 
+
+1. Does the value of hbar and N_eff (number of effective neutrino species) depend on v? what about G, since we are keeping M_planck constant.
+
+2. Can we write the new neutron lifetime to be 1/gamma from equation 8, when varying v? 
