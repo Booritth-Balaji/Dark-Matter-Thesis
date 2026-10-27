@@ -73,6 +73,8 @@ M Date: 8/9/26
 
 3/11/26
 
+0. The formula for the decay life time. Is it proportional to Q/Q0 or Q0/Q ? (Seems like it is Q0/Q, just from experimenting with it)
+
 1. So we wanted the plot of v v/s (mu - md) and have the contours of Y4 on it. In that calculation, we can directly obtain the mass difference, mn - mp, from the quark mass difference. And in most places this neutron-proton mass splitting is what is important anyways so we can just bypass having to calculate mn and mp
 
 Now the problem is that there is one place where we actually need the mn mass. That part is the initial abundance of elements calculation, before the BBN began. This formula explicitly uses the neutron mass itself. 

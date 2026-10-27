@@ -30,11 +30,12 @@ mli6 = 5603.05141 # Mass of Lithium-6 in [MeV/c^2]
 mli7 = 6533.833166 # Mass of Lithium-7 in [MeV/c^2]
 mbe7 = 6534.184060 # Mass of Beryllium-7 in [MeV/c^2]
 
-mn_minus_mp = mn - mp # Neutron-Proton Mass Difference in [MeV/c^2]
-Q = mn_minus_mp # Proton-Neutron Mass Difference in [MeV/c^2]
+# mn_minus_mp = mn - mp # Neutron-Proton Mass Difference in [MeV/c^2]
+Q0 = mn - mp # Proton-Neutron Mass Difference in [MeV/c^2]
+Q = Q0 # Proton-Neutron Mass Difference in [MeV/c^2]
 
 amu = 931.494003 # AMU in MeV
-q = Q/me # Exponential NSE Mass ratio [unitless]
+# q = Q/me # Exponential NSE Mass ratio [unitless]
 
 ## Energies ##
 Bd = 2.224 # Binding Energy of Deuterium in [MeV]
@@ -196,7 +197,8 @@ def WeakRate(T,Tnu):
     λpn [1xn ndarray]
     '''
 
-    taun = 880 * (v/v0)**4 # Average lifetime of a neutron before decay [s]
+    taun = 880 * (v/v0)**4 * (Q0/Q)**5 # Average lifetime of a neutron before decay [s]
+    q = Q/me
 
     # The normalization coefficient 
     K = 1/(quad(lambda x: np.sqrt(x**2-1)*x*(q-x)**2, 1, q)[0])* (1/taun)

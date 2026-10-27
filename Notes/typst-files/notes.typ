@@ -3340,7 +3340,7 @@ So, *what actually changes when we change the weak scale?*
 
   - The main effect of this change would be felt in the *decay rate* of the neutrons, which is given by the relation @hallWeakScaleBBN2014: 
 
-  $ tau = (880 "s") (v / v_0)^4 ((m_n - m_p) / (m_n - m_p)_0)^5 $
+  $ tau = (880 "s") (v / v_0)^4 ((m_n - m_p)_0 / (m_n - m_p))^5 $
 
   #hl[NOTE: THE FORMULA IN THE PAPER @hallWeakScaleBBN2014 IS WRONG. THIS IS THE CORRECT EQUATION, IN THE PAPER THE $v$ AND $v_0$ SHOULD BE INTERCHANGED.]
 
