@@ -3301,9 +3301,78 @@ Why do we need this? Because the $B slash A$ is described as a function of the p
 
 ]
 
-Now that we have all the ingredients, we can start varying $(m_u, m_d, m_e)$ and see how the stability boundaries change in each scenario. 
+Now that we have all the ingredients, we can start varying $(m_u, m_d, m_e)$ and see how the stability boundaries change in each scenario. This gives us the following plots
+
+#figure(
+  image("images/mu_vs_md.png", width: 70%),
+  // caption: [],
+) <mu_vs_md>
+
+#figure(
+  image("images/me_vs_md.png", width: 70%),
+  // caption: [Caption here],
+) <me_vs_md>
+
+#figure(
+  image("images/me_vs_mu.png", width: 70%),
+  // caption: [Caption here],
+) <me_vs_mu>
 
 
+
+== $Y_4$ vs $v$ variation 
+
+In this section, we will look at how the helium-4 abundance varies with the weak scale. So we will be simulating the BBN process for different values of the weak scale, and calculating the resulting helium-4 abundance. 
+
+So, *what actually changes when we change the weak scale?* 
+
+- The masses of the quarks and leptons would change, essentially changing the masses of the nucleons and the binding energies of the nuclei. This would change the reaction rates of the nuclear reactions, which would in turn change the abundances of the light elements.
+
+#hl[BUT we are not going to do that]. For the simplest case (atleast) we are going to assume that the yukawa couplings change in such a manner that the masses of the quarks and leptons remain constant, when varying the weak scale $v$. 
+
+#theory-box()[
+  *The changes we consider when varying the weak scale are:*
+
+  - Ideally, the temperature evolution (of both photons and neutrinos) would change, since the weak scale is related to the Fermi constant $G_F$, which in turn is related to the cross sections of the neutrino-photon interactions. This would change the $g_*$ factor (the effective number of relativistic degrees of freedom), which would change the temperature evolution. 
+
+   #hl[But we are not considering this effect, since it is a small effect, especially since we are only interested in the final helium-4 abundance, which is not very sensitive to the temperature evolution.]
+
+
+  - The main effect of this change would be felt in the *decay rate* of the neutrons, which is given by the relation @hallWeakScaleBBN2014: 
+
+  $ tau = (880 "s") (v / v_0)^4 ((m_n - m_p) / (m_n - m_p)_0)^5 $
+
+  #hl[NOTE: THE FORMULA IN THE PAPER @hallWeakScaleBBN2014 IS WRONG. THIS IS THE CORRECT EQUATION, IN THE PAPER THE $v$ AND $v_0$ SHOULD BE INTERCHANGED.]
+
+  This, also manifests itself in the initial abundances of the neutrons and protons (before decoupling/BBN), which is now given by this relation @hallWeakScaleBBN2014: 
+
+  $ n_n/n_p = exp(- (m_n - m_p) / T_("fo")) e^(-t slash tau) $
+  
+  where $t$ is the time since Big Bang, and $T_("fo")$ is the freeze-out temperature of the weak interactions, which is given by the relation @hallWeakScaleBBN2014: 
+
+  $ T_("fo") approx (0.9 "MeV") (v / v_0)^(4 slash 3) (M_"pl, 0" / M_"pl")^(1 slash 3) $
+
+]
+
+So the only real changes had to be made in the: 
+
+- neutron decay rate 
+- initial neutron/proton abundances
+
+Changing these two things, we can simulate the BBN process for different values of the weak scale, and calculate the resulting BBN abundance. And this is what we get: 
+
+
+#figure(
+  image("images/BBN_abundance_for_10v0.png", width: 90%),
+  caption: [BBN abundances evolution for a weak scale $v = 10 v_0$],
+) <BBN_abundance_for_10v0>
+
+We also calculate the helium-4 abundance as a function of the weak scale, which is shown below:
+
+#figure(
+  image("images/Y4_vs_v.png", width: 70%),
+  caption: [Helium-4 abundance as a function of the weak scale],
+) <Y4_vs_v>
 
 
 
@@ -3325,8 +3394,6 @@ I found a good answer to this question in:
 The naive intiution here was that if the binding energy of the nuclei becomes larger(smaller), then the nucleaons would have a smaller(larger) cross section, because they would be more tightly bound together. 
 
 Need to look more deeper into how this is actually calculated and affected. 
-
-
 
 
 

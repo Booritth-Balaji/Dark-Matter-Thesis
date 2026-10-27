@@ -67,3 +67,20 @@ M Date: 8/9/26
 1. Does the value of hbar and N_eff (number of effective neutrino species) depend on v? what about G, since we are keeping M_planck constant.
 
 2. Can we write the new neutron lifetime to be 1/gamma from equation 8, when varying v? 
+
+
+--- 
+
+3/11/26
+
+1. So we wanted the plot of v v/s (mu - md) and have the contours of Y4 on it. In that calculation, we can directly obtain the mass difference, mn - mp, from the quark mass difference. And in most places this neutron-proton mass splitting is what is important anyways so we can just bypass having to calculate mn and mp
+
+Now the problem is that there is one place where we actually need the mn mass. That part is the initial abundance of elements calculation, before the BBN began. This formula explicitly uses the neutron mass itself. 
+
+My resolution was this: We can maybe ignore this effect because of the following: 
+
+    - The neutron mass dependence is such that the abundance is proportional to 1/mn^6 
+    So any change would show up as to the inverse power of 6 in the initial abundances. 
+    But since the initial abundances are already quite small, this would not even matter then. The change would be very negligible, even if the neutron mass, somehow becomes double or something. 
+
+    So we can ignore this effect, keeping the mn to be the same as mn_0? 

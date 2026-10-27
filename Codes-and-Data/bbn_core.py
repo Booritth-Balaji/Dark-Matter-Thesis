@@ -29,7 +29,10 @@ m4 = 3727.379109 # Mass of Helium-4 (Alpha) in [MeV/c^2]
 mli6 = 5603.05141 # Mass of Lithium-6 in [MeV/c^2]
 mli7 = 6533.833166 # Mass of Lithium-7 in [MeV/c^2]
 mbe7 = 6534.184060 # Mass of Beryllium-7 in [MeV/c^2]
-Q = 939.5654133 - 938.2720813 # Proton-Neutron Mass Difference in [MeV/c^2]
+
+mn_minus_mp = mn - mp # Neutron-Proton Mass Difference in [MeV/c^2]
+Q = mn_minus_mp # Proton-Neutron Mass Difference in [MeV/c^2]
+
 amu = 931.494003 # AMU in MeV
 q = Q/me # Exponential NSE Mass ratio [unitless]
 
@@ -452,16 +455,19 @@ def BBN_evolution(T):
 
     # Out-front factor is assuming initial conditions at our starting time have Xp ~ Xn, so it is (1/2)^A where A is the mass number.
 
-    XDNSE0 = (1/4) * NSEAbundances(T9i, Bd, 2, 3)
-    XTNSE0 = (1/8) * NSEAbundances(T9i, Bt, 3, 2)
-    X3NSE0 = (1/8) * NSEAbundances(T9i, B3, 3, 2)
-    X4NSE0 = (1/16) * NSEAbundances(T9i, B4, 4, 1)
-    XLi7NSE0 = (1/128) * NSEAbundances(T9i, Bli7, 7, 4)
-    XBe7NSE0 = (1/128) * NSEAbundances(T9i, Bbe7, 7, 4)
+    Xn0 = X_n[0]
+    Xp0 = X_p[0]
+
+    XDNSE0 = (Xp0)**1 * (Xn0)**1 * NSEAbundances(T9i, Bd, 2, 3)
+    XTNSE0 = (Xp0)**1 * (Xn0)**2 * NSEAbundances(T9i, Bt, 3, 2)
+    X3NSE0 = (Xp0)**2 * (Xn0)**1 * NSEAbundances(T9i, B3, 3, 2)
+    X4NSE0 = (Xp0)**2 * (Xn0)**2 * NSEAbundances(T9i, B4, 4, 1)
+    XLi7NSE0 = (Xp0)**3 * (Xn0)**4 * NSEAbundances(T9i, Bli7, 7, 4)
+    XBe7NSE0 = (Xp0)**4 * (Xn0)**3 * NSEAbundances(T9i, Bbe7, 7, 4)
 
     X0 = np.zeros(8,)
-    X0[1] = X_n[0]
-    X0[0] = X_p[0]
+    X0[1] = Xn0
+    X0[0] = Xp0
     X0[2] = XDNSE0
     X0[3] = XTNSE0
     X0[4] = X3NSE0
