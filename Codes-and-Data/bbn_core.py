@@ -201,7 +201,14 @@ def WeakRate(T,Tnu):
     q = Q/me
 
     # The normalization coefficient 
-    K = 1/(quad(lambda x: np.sqrt(x**2-1)*x*(q-x)**2, 1, q)[0])* (1/taun)
+
+    # K_integral = quad(lambda x: np.sqrt(x**2-1)*x*(q-x)**2, 1, q)[0]
+
+    # if K_integral == 0: 
+    #     K = 
+
+    K = 1/(quad(lambda x: np.sqrt(x**2-1)*x*(q-x)**2, 1, q, epsabs=1e-10, epsrel=1e-10)[0])* (1/taun)
+    # print(K)
     
     # Quadrature setup
     N = 64

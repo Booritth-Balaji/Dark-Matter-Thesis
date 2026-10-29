@@ -86,3 +86,16 @@ My resolution was this: We can maybe ignore this effect because of the following
     But since the initial abundances are already quite small, this would not even matter then. The change would be very negligible, even if the neutron mass, somehow becomes double or something. 
 
     So we can ignore this effect, keeping the mn to be the same as mn_0? 
+
+
+2. K (the normalizing constant for the weak rates) seems to shoot up to infinity as mn - mp approaches the mass of the electron i.e. q -> 1
+
+    Why is this happening? 
+
+    - I think its because the limits of the integration is from 1 at the lower limit. so because of this, it shoots up to infinity since the integral involves a (x - q) term in the numerator which translates to the integral being zero and K shooting to infinity or nan. 
+
+    - This also shows up in the contour plots of v/v0 v/s md-mu. There is a massive spike below md-mu < 2 ish. Prolly just coz the integral is approaching zero so the inverse value shoots up like crazy. But this messes with the plot since right when it hits the hydrogen stability condition is when this is happening (or actually a little before that) 
+
+    - So what to do with this? Set an upper bound on K before it starts to shoot up in the first place?
+
+        - Also maybe worth restructuring the code so that K doesn't need to be calculated multiple times. 

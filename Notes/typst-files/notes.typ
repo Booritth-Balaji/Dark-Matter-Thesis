@@ -3265,7 +3265,7 @@ We will be particularly looking at two different stability conditions that must 
 
   The stability condition for complex nuclei is given by:
 
-  $ |B slash A| > m_n - m_p - m_e $
+  $ |B slash A| > m_n - m_p - m_e $<complex-nuclei-stability>
 
   where $B slash A$ is the binding energy per nucleon of the nucleus. #hl[If the above inequality was not satisfied, then the neutrons bound in the nucleus would decay, making the nucleus unstable.]
 
@@ -3300,6 +3300,8 @@ Why do we need this? Because the $B slash A$ is described as a function of the p
   So we don't really need to calculate the pion mass as a function of the quark masses (and don't need to worry about the constant $B_0$), since we can just use the ratio of the quark masses to get the ratio of the pion masses.
 
 ]
+
+#hl[Also, since $|B slash A|$ is already negative in as seen in the above plot (@B-A-pion-mass-dep.png) we set the absolute value to be: $|B slash A| = - (B slash A)$ in the complex nuclei stability condition @complex-nuclei-stability]
 
 Now that we have all the ingredients, we can start varying $(m_u, m_d, m_e)$ and see how the stability boundaries change in each scenario. This gives us the following plots
 
@@ -3373,6 +3375,21 @@ We also calculate the helium-4 abundance as a function of the weak scale, which 
   image("images/Y4_vs_v.png", width: 70%),
   caption: [Helium-4 abundance as a function of the weak scale],
 ) <Y4_vs_v>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
